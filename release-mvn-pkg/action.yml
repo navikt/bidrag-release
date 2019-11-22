@@ -1,0 +1,5 @@
+name: 'Release mvaven package'
+description: 'Releases a maven package on github'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

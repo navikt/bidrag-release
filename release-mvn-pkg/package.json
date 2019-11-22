@@ -1,0 +1,8 @@
+{
+  "name": "release-mvn-pkg",
+  "version": "1.0.0",
+  "dependencies": {
+    "@actions/core": "latest",
+    "@actions/exec": "latest"
+  }
+}

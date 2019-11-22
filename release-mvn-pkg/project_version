@@ -1,0 +1,16 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< org.apache.maven:standalone-pom >-------------------
+[INFO] Building Maven Stub Project (No POM) 1
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- maven-help-plugin:3.2.0:evaluate (default-cli) @ standalone-pom ---
+[INFO] No artifact parameter specified, using 'org.apache.maven:standalone-pom:pom:1' as project.
+[INFO] 
+1
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.679 s
+[INFO] Finished at: 2019-11-22T16:07:45+01:00
+[INFO] ------------------------------------------------------------------------
