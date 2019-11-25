@@ -15,7 +15,7 @@ async function run() {
     prepareRelease(filepath).then(
         value => {
           core.info('the tagged release: ' + value);
-          core.setOutput("tagged-release", value);
+          core.setOutput("tagged-release", 'v' + value);
         }
     );
 

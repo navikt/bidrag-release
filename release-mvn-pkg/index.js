@@ -3,12 +3,10 @@ const exec = require("@actions/exec");
 
 async function run() {
   try {
-    // Set the src-path
-    const src = __dirname + "/src";
-    core.debug(`src: ${src}`);
+    core.debug(`filepath: ${__dirname}`);
 
-    // Execute verify bash script
-    await exec.exec(`${src}/release.sh`);
+    // Execute release bash script
+    await exec.exec(`${__dirname}/src/release.sh`);
   } catch (error) {
     core.setFailed(error.message);
   }
