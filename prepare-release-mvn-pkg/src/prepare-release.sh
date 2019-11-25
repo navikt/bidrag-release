@@ -19,5 +19,5 @@ echo $COMMIT_SHA > .commit_sha
 echo $NEW_PATCH_VERSION > .new_patch_version
 
 # Update to semantic version with commit hash
-echo "Setting release version: $VERSION"
-mvn -B versions:set -DnewVersion="$VERSION"
+echo "Setting release version: $SEMANTIC_VERSION-$COMMIT_SHA"
+mvn -B versions:set -DnewVersion="$SEMANTIC_VERSION-$COMMIT_SHA"
