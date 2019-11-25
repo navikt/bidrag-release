@@ -28,6 +28,15 @@ async function run() {
         }
     );
 
+    filepath = `${process.env.GITHUB_WORKSPACE}/.new_patch_version`;
+
+    prepareRelease(filepath).then(
+        value => {
+          core.info('the new patch version: ' + value);
+          core.setOutput("new-patch-version", value);
+        }
+    );
+
   } catch (error) {
     core.setFailed(error.message);
   }
