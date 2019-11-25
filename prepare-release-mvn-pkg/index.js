@@ -7,34 +7,46 @@ async function run() {
   try {
     core.debug(`filepath: ${__dirname}`);
 
-    // Execute verify bash script
+    // Execute prepare-release bash script
     await exec.exec(`${__dirname}/src/prepare-release.sh`);
 
-    const encoding = {encoding: 'utf-8'};
     let filepath = `${process.env.GITHUB_WORKSPACE}/.tagged_release`;
 
-    fs.readFile(filepath, encoding, function(err,data){
-      if (!err) {
-        core.info('read tagged release: ' + data);
-        core.setOutput("tagged-release", data);
-      } else {
-        console.log(err);
-      }
-    });
+    prepareRelease(filepath).then(
+        value => {
+          core.info('read tagged release: ' + value);
+          core.setOutput("tagged-release", value);
+        }
+    );
 
     filepath = `${process.env.GITHUB_WORKSPACE}/.commit_sha`;
 
-    fs.readFile(filepath, encoding, function(err,data){
-      if (!err) {
-        core.info('read commit sha: ' + data);
-        core.setOutput("commit-sha", data);
-      } else {
-        console.log(err);
-      }
-    });
+    prepareRelease(filepath).then(
+        value => {
+          core.info('read commit sha: ' + value);
+          core.setOutput("commit-sha", value);
+        }
+    );
+
   } catch (error) {
     core.setFailed(error.message);
   }
+}
+
+function prepareRelease(filepath) {
+  const encoding = {encoding: 'utf-8'};
+
+  return new Promise((resolve, reject) => {
+        fs.readFile(filepath, encoding, function (error, data) {
+          if (error) {
+            console.log(error);
+            reject(error)
+          } else {
+            resolve(data)
+          }
+        })
+      }
+  );
 }
 
 // noinspection JSIgnoredPromiseFromCall
