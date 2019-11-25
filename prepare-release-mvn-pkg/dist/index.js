@@ -194,6 +194,7 @@ module.exports = require("events");
 const core = __webpack_require__(827);
 const exec = __webpack_require__(120);
 const fs = __webpack_require__(747);
+const process = __webpack_require__(765);
 
 async function run() {
   try {
@@ -203,7 +204,7 @@ async function run() {
     await exec.exec(__webpack_require__.ab + "prepare-release.sh");
 
     const encoding = {encoding: 'utf-8'};
-    var filepath = `${__dirname}/.tagged_release`;
+    let filepath = `${process.env.GITHUB_WORKSPACE}/.tagged_release`;
 
     fs.readFile(filepath, encoding, function(err,data){
       if (!err) {
@@ -214,7 +215,7 @@ async function run() {
       }
     });
 
-    filepath = `${__dirname}/.commit_sha`;
+    filepath = `${process.env.GITHUB_WORKSPACE}/.commit_sha`;
 
     fs.readFile(filepath, encoding, function(err,data){
       if (!err) {
@@ -239,6 +240,13 @@ run();
 /***/ (function(module) {
 
 module.exports = require("fs");
+
+/***/ }),
+
+/***/ 765:
+/***/ (function(module) {
+
+module.exports = require("process");
 
 /***/ }),
 

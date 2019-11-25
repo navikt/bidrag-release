@@ -1,6 +1,7 @@
 const core = require("@actions/core");
 const exec = require("@actions/exec");
 const fs = require("fs");
+const process = require("process");
 
 async function run() {
   try {
@@ -10,7 +11,7 @@ async function run() {
     await exec.exec(`${__dirname}/src/prepare-release.sh`);
 
     const encoding = {encoding: 'utf-8'};
-    var filepath = `${__dirname}/.tagged_release`;
+    let filepath = `${process.env.GITHUB_WORKSPACE}/.tagged_release`;
 
     fs.readFile(filepath, encoding, function(err,data){
       if (!err) {
@@ -21,7 +22,7 @@ async function run() {
       }
     });
 
-    filepath = `${__dirname}/.commit_sha`;
+    filepath = `${process.env.GITHUB_WORKSPACE}/.commit_sha`;
 
     fs.readFile(filepath, encoding, function(err,data){
       if (!err) {
