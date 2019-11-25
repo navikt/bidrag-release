@@ -207,7 +207,7 @@ async function run() {
 
     prepareRelease(filepath).then(
         value => {
-          core.info('read tagged release: ' + value);
+          core.info('the tagged release: ' + value);
           core.setOutput("tagged-release", value);
         }
     );
@@ -216,7 +216,7 @@ async function run() {
 
     prepareRelease(filepath).then(
         value => {
-          core.info('read commit sha: ' + value);
+          core.info('the commit sha: ' + value);
           core.setOutput("commit-sha", value);
         }
     );
