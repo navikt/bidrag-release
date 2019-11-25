@@ -15,7 +15,7 @@ async function run() {
 
     fs.readFile(filepath, encoding, function(err,data){
       if (!err) {
-        core.debug('read tagged release: ' + data);
+        core.info('read tagged release: ' + data);
         core.setOutput("tagged-release", data);
       } else {
         console.log(err);
@@ -26,7 +26,7 @@ async function run() {
 
     fs.readFile(filepath, encoding, function(err,data){
       if (!err) {
-        core.debug('read commit sha: ' + data);
+        core.info('read commit sha: ' + data);
         core.setOutput("commit-sha", data);
       } else {
         console.log(err);
