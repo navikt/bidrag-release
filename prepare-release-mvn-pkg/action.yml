@@ -1,0 +1,10 @@
+name: Prepare release
+description: Prepares release of a maven built project, outputs the tagged release (including git-sha)
+outputs:
+  tagged-release:
+    description: the tag for this release
+  commit-sha:
+    description: the commit sha for this release
+runs:
+  using: node12
+  main: dist/index.js
