@@ -2,7 +2,9 @@
   "name": "release-mvn-pkg",
   "version": "1.0.0",
   "dependencies": {
-    "@actions/core": "latest",
-    "@actions/exec": "latest"
+    "@actions/core": "^1.2.0",
+    "@actions/exec": "^1.0.1",
+    "fs": "0.0.1-security",
+    "process": "^0.11.10"
   }
 }

@@ -5,6 +5,8 @@ outputs:
     description: the tag for this release
   commit-sha:
     description: the commit sha for this release
+  new-snapshot-version:
+    description: the snapshot version after release
 runs:
   using: node12
   main: dist/index.js
