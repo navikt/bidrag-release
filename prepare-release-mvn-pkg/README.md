@@ -8,4 +8,4 @@ Requires a github runner with maven and a github artifact being built
 with maven and runs on an environment which support bash-scripts.
 
 No inputs are required but the action will output the tagged-release,
-new patch version, and the commit-sha, see `action.yml`.
+new snapshot version, and the commit-sha, see `action.yml`.

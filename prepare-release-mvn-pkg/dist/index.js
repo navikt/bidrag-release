@@ -208,7 +208,7 @@ async function run() {
     prepareRelease(filepath).then(
         value => {
           core.info('the tagged release: ' + value);
-          core.setOutput("tagged-release", 'v' + value);
+          core.setOutput("tagged-release", value);
         }
     );
 
@@ -221,12 +221,12 @@ async function run() {
         }
     );
 
-    filepath = `${process.env.GITHUB_WORKSPACE}/.new_patch_version`;
+    filepath = `${process.env.GITHUB_WORKSPACE}/.new_snapshot_version`;
 
     prepareRelease(filepath).then(
         value => {
-          core.info('the new patch version: ' + value);
-          core.setOutput("new-patch-version", value);
+          core.info('the new snapshot version: ' + value);
+          core.setOutput("new-snapshot-version", value);
         }
     );
 
