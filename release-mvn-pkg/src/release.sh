@@ -1,10 +1,11 @@
 #!/bin/bash
 set -e
 
+NEW_SNAPSHOT_VERSION=$(cat .new-snapshot-version)
+
 echo "Running release"
 mvn -B --settings maven-settings.xml deploy -Dmaven.wagon.http.pool=false
 
-# Update to semantic SNAPSHOT version
-VERSION="$MAJOR_AND_MINOR_VERSION.$NEW_PATCH_VERSION-SNAPSHOT"
-echo "Setting SNAPSHOT version: $VERSION"
-mvn -B versions:set -DnewVersion="$VERSION"
+# Update to new SNAPSHOT version
+echo "Setting SNAPSHOT version: $NEW_SNAPSHOT_VERSION"
+mvn -B versions:set -DnewVersion="$NEW_SNAPSHOT_VERSION"
