@@ -1,0 +1,11 @@
+name: Verify release
+description: Verifies that the new commit contains a section in the README.md file that contains the version to release
+inputs:
+  semantic-version:
+    description: the semantic release for the release, format as used in the README.md
+outputs:
+  is-release-candidate:
+    description: the text 'true' if this new version can be relased
+runs:
+  using: node12
+  main: dist/index.js

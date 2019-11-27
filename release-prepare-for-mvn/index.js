@@ -10,36 +10,25 @@ async function run() {
     // Execute prepare-release bash script
     await exec.exec(`${__dirname}/src/prepare-release.sh`);
 
-    let filepath = `${process.env.GITHUB_WORKSPACE}/.tagged_release`;
-
-    prepareRelease(filepath).then(
-        value => {
-          core.info('the tagged release: ' + value);
-          core.setOutput("tagged-release", value);
-        }
-    );
-
-    filepath = `${process.env.GITHUB_WORKSPACE}/.commit_sha`;
-
-    prepareRelease(filepath).then(
-        value => {
-          core.info('the commit sha: ' + value);
-          core.setOutput("commit-sha", value);
-        }
-    );
-
-    filepath = `${process.env.GITHUB_WORKSPACE}/.new_snapshot_version`;
-
-    prepareRelease(filepath).then(
-        value => {
-          core.info('the new snapshot version: ' + value);
-          core.setOutput("new-snapshot-version", value);
-        }
-    );
+    readPrepareRelease(".semantic-version", "semantic-version");
+    readPrepareRelease(".release-version", "release-version");
+    readPrepareRelease(".commit-sha", "commit-sha");
+    readPrepareRelease(".new-snapshot-version", "new-snapshot-version");
 
   } catch (error) {
     core.setFailed(error.message);
   }
+}
+
+function readPrepareRelease(filename, output) {
+  let filepath = `${process.env.GITHUB_WORKSPACE}/${filename}`;
+
+  prepareRelease(filepath).then(
+      value => {
+        core.info('the tagged release: ' + value);
+        core.setOutput(output, value);
+      }
+  );
 }
 
 function prepareRelease(filepath) {
