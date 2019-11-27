@@ -7,12 +7,15 @@ async function run() {
   try {
     core.debug(`filepath: ${__dirname}`);
 
-    let newSnapshotVersion = core.getInput("new-snapshot-version");
+    let newSnapshotVersion = core.getInput(
+        "new-snapshot-version", {required: true}
+    );
+
     let newSnapshotFile = `${process.env.GITHUB_WORKSPACE}/.new-snapshot-version`;
 
     try {
       fs.writeFileSync(newSnapshotFile, newSnapshotVersion);
-    } catch(err) {
+    } catch (err) {
       core.setFailed(err.message)
     }
 
