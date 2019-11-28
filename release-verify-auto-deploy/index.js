@@ -3,7 +3,7 @@ const exec = require("@actions/exec");
 const fs = require("fs");
 const process = require("process");
 
-const writeSemanticVersion = (file, data) => {
+const writeFile = (file, data) => {
   return new Promise((resolve, reject) => {
     fs.writeFile(file, data, error => {
       if (error) {
@@ -16,17 +16,24 @@ const writeSemanticVersion = (file, data) => {
 
 async function run() {
   try {
-    let semanticVersion = core.getInput("semantic-version", {required: true});
-    let writePath = `${process.env.GITHUB_WORKSPACE}/${filename}/.semantic-version￿`;
+    let releaseVersion = core.getInput("release-version", {required: true});
+    let releaseVersionFilepath = `${process.env.GITHUB_WORKSPACE}/${filename}/.release-version￿`;
 
-    writeSemanticVersion(writePath, semanticVersion).then(
+    writeFile(releaseVersionFilepath, releaseVersion).then(
+        result => core.debug(result)
+    );
+
+    let changelogFile = core.getInput("changelog-file", {required: true});
+    let changelogFilepath = `${process.env.GITHUB_WORKSPACE}/${filename}/.changelog-file￿`;
+
+    writeFile(changelogFilepath, changelogFile).then(
         result => core.debug(result)
     );
 
     core.debug(`filepath: ${__dirname}`);
 
     // Execute prepare-release bash script
-    await exec.exec(`${__dirname}/src/verify-version.sh`);
+    await exec.exec(`${__dirname}/src/verify-deploy.sh`);
 
     let readPath = `${process.env.GITHUB_WORKSPACE}/.is-release-candidate`;
 

@@ -1,11 +1,15 @@
-name: Verify release
-description: Verifies that the new commit contains a section in the README.md file that contains the version to release
+name: Verify auto deploy
+description: Verifies that the new commit contains at least one section in the changelog file that contains the version that is to be released
 inputs:
-  semantic-version:
-    description: the semantic release for the release, format as used in the README.md
+  release-version:
+    description: the version for the release, format as used in the changelog-file
+    required: true
+  changelog-file:
+    description: the file containing the changelog for this release
+    required: true
 outputs:
   is-release-candidate:
-    description: the text 'true' if this new version can be relased
+    description: the text 'true' if this new version can be auto deployed
 runs:
   using: node12
   main: dist/index.js

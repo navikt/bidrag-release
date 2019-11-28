@@ -1,4 +1,4 @@
-# bidrag-actions/prepare-release-mvn-pkg
+# bidrag-actions/release-verify-auto-deploy
 
 This action will prepare a maven artifact to be released. It will get the
 release version from the expected SNAPSHOT version of the project. This
