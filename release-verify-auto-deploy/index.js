@@ -17,16 +17,17 @@ const writeFile = (file, data) => {
 async function run() {
   try {
     let releaseVersion = core.getInput("release-version", {required: true});
-    let releaseVersionFilepath = `${process.env.GITHUB_WORKSPACE}/${filename}/.release-version￿`;
+    let changelogFile = core.getInput("changelog-file", {required: true});
 
-    writeFile(releaseVersionFilepath, releaseVersion).then(
+    writeFile(
+        `${process.env.GITHUB_WORKSPACE}/.release-version￿`, releaseVersion
+    ).then(
         result => core.debug(result)
     );
 
-    let changelogFile = core.getInput("changelog-file", {required: true});
-    let changelogFilepath = `${process.env.GITHUB_WORKSPACE}/${filename}/.changelog-file￿`;
-
-    writeFile(changelogFilepath, changelogFile).then(
+    writeFile(
+        `${process.env.GITHUB_WORKSPACE}/changelog-file￿`, changelogFile
+    ).then(
         result => core.debug(result)
     );
 
@@ -40,7 +41,7 @@ async function run() {
     readIsReleaseCandidate(readPath).then(
         value => {
           core.info('the is release candidate: ' + value);
-          core.setOutput("is-release-candidate", value);
+          core.setOutput("is-release-candidate", Boolean(value));
         }
     );
 

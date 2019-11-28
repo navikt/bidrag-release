@@ -9,7 +9,7 @@ inputs:
     required: true
 outputs:
   is-release-candidate:
-    description: the text 'true' if this new version can be auto deployed
+    description: true if this new version can be auto deployed, false if not
 runs:
   using: node12
   main: dist/index.js
