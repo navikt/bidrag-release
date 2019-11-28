@@ -203,10 +203,10 @@ async function run() {
     // Execute prepare-release bash script
     await exec.exec(__webpack_require__.ab + "prepare-release.sh");
 
-    readPrepareRelease(".semantic-version", "semantic-version");
-    readPrepareRelease(".release-version", "release-version");
-    readPrepareRelease(".commit-sha", "commit-sha");
-    readPrepareRelease(".new-snapshot-version", "new-snapshot-version");
+    readPrepareRelease(".semantic-version", "semantic_version");
+    readPrepareRelease(".release-version", "release_version");
+    readPrepareRelease(".commit-sha", "commit_sha");
+    readPrepareRelease(".new-snapshot-version", "new_snapshot_version");
 
   } catch (error) {
     core.setFailed(error.message);
