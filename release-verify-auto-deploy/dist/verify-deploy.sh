@@ -1,6 +1,6 @@
 #!/bin/bash
-CHANGELOG_FILE="$(cat .changelog-file)"                                       # the name of the changelog file to read
-RELEASE_VERSION="$(cat .release-version)"                                     # the release version to deploy
+CHANGELOG_FILE="$(cat .changelog_file)"                                       # the name of the changelog file to read
+RELEASE_VERSION="$(cat .release_version)"                                     # the release version to deploy
 RELEASE_TABLE="$(cat "$CHANGELOG_FILE" | grep '|' )"                          # the release table in the changelog file
 COUNT="$(echo "$RELEASE_TABLE" | grep -c "$RELEASE_VERSION")"                 # count all mentions of 'RELEASE_VERSION' in the RELEASE_TABLE
 

@@ -36,7 +36,7 @@ async function run() {
     // Execute prepare-release bash script
     await exec.exec(`${__dirname}/src/verify-deploy.sh`);
 
-    let readPath = `${process.env.GITHUB_WORKSPACE}/.is-release-candidate`;
+    let readPath = `${process.env.GITHUB_WORKSPACE}/.is_release_candidate`;
 
     readIsReleaseCandidate(readPath).then(
         value => {
