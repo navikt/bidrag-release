@@ -15,9 +15,10 @@ COMMIT_SHA=$(git rev-parse --short=12 HEAD)                                     
 VERSION="$SEMANTIC_VERSION-$COMMIT_SHA"                                                 # > 1.2.3-22ea0ff
 NEW_SNAPSHOT_VERSION="$MAJOR_AND_MINOR_VERSION.$NEW_PATCH_VERSION-SNAPSHOT"             # > 1.2.4-SNAPSHOT
 
-echo "v$VERSION" > .tagged_release                                                      # > v1.2.3-22ea0ff
-echo "$COMMIT_SHA" > .commit_sha                                                        # > 22ea0ff
-echo "$NEW_SNAPSHOT_VERSION" > .new_snapshot_version                                    # > 1.2.4-SNAPSHOT
+echo "$SEMANTIC_VERSION" > .semantic-version                                            # > 1.2.3
+echo "$VERSION" > .release-version                                                      # > v1.2.3-22ea0ff
+echo "$COMMIT_SHA" > .commit-sha                                                        # > 22ea0ff
+echo "$NEW_SNAPSHOT_VERSION" > .new-snapshot-version                                    # > 1.2.4-SNAPSHOT
 
 # Update to semantic version with commit hash
 echo "Setting release version: $VERSION"
