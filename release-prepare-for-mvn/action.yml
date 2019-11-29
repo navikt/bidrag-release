@@ -1,14 +1,5 @@
 name: Prepare release
-description: Prepares release of a maven built project, outputs the tagged release (including git-sha)
-outputs:
-  semantic-release-version:
-    description: the semantic version of this release ('major.minor version'.'patch version')
-  release-version:
-    description: the release version ('semantic version'-'commit sha')
-  commit-sha:
-    description: the commit sha for this release
-  new-snapshot-version:
-    description: the snapshot version after release ('bumped semantic version'-SNAPSHOT)
+description: Prepares release of a maven built project, writes all preparations to files, see `README.md`
 runs:
   using: node12
   main: dist/index.js
