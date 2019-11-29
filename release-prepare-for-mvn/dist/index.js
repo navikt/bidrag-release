@@ -206,7 +206,7 @@ async function run() {
   }
 }
 
-run().then(core.debug('ran release-prepare-for-mvn'));
+run();
 
 
 /***/ }),

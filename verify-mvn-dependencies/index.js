@@ -14,4 +14,4 @@ async function run() {
   }
 }
 
-run().then(core.debug('ran verify-mvn-dependencies'));
+run();

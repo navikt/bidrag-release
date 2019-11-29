@@ -26,4 +26,4 @@ async function run() {
   }
 }
 
-run().then(core.debug('ran release-mvn-pkg'));
+run();

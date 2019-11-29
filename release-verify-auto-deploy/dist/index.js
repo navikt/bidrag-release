@@ -226,7 +226,7 @@ async function run() {
   }
 }
 
-run().then(core.debug('ran release-verify-auto-deploy'));
+run();
 
 
 /***/ }),
