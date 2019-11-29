@@ -193,6 +193,7 @@ module.exports = require("events");
 
 const core = __webpack_require__(827);
 const exec = __webpack_require__(120);
+const fs = __webpack_require__(747);
 
 const writeFile = (file, data) => {
   return new Promise((resolve, reject) => {
@@ -228,6 +229,13 @@ async function run() {
 
 run();
 
+
+/***/ }),
+
+/***/ 747:
+/***/ (function(module) {
+
+module.exports = require("fs");
 
 /***/ }),
 

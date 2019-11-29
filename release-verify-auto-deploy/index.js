@@ -1,5 +1,6 @@
 const core = require("@actions/core");
 const exec = require("@actions/exec");
+const fs = require("fs");
 
 const writeFile = (file, data) => {
   return new Promise((resolve, reject) => {
