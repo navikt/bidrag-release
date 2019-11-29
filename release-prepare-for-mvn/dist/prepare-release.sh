@@ -12,7 +12,6 @@ PATCH_VERSION=$(echo "$SEMANTIC_RELEASE_VERSION" | sed "s/$MAJOR_AND_MINOR_VERSI
 NEW_PATCH_VERSION=$(($PATCH_VERSION+1))                                                 # > 4
 COMMIT_SHA=$(git rev-parse --short=12 HEAD)                                             # eks: 22ea0ff
 
-echo "patch version '$PATCH_VERSION' and new patch version '$NEW_PATCH_VERSION'"
 RELEASE_VERSION="$SEMANTIC_RELEASE_VERSION-$COMMIT_SHA"                                 # > 1.2.3-22ea0ff
 NEW_SNAPSHOT_VERSION="$MAJOR_AND_MINOR_VERSION.$NEW_PATCH_VERSION-SNAPSHOT"             # > 1.2.4-SNAPSHOT
 
