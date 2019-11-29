@@ -11,6 +11,6 @@ if [ "$COUNT" -eq 1 ]
     exit 1;
 elif [ "$COUNT" -gt 0 ]
   then
-    >&2 echo ERROR: Found $COUNT SNAPSHOT dependencies
+    >&2 echo "ERROR: Found $COUNT SNAPSHOT dependencies"
     exit 1;
 fi
