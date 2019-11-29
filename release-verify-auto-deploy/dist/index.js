@@ -193,29 +193,9 @@ module.exports = require("events");
 
 const core = __webpack_require__(827);
 const exec = __webpack_require__(120);
-const fs = __webpack_require__(747);
-const process = __webpack_require__(765);
-
-const writeChangelogFile = (file, data) => {
-  return new Promise((resolve, reject) => {
-    fs.writeFile(file, data, error => {
-      if (error) {
-        reject(error);
-      }
-      resolve(".changelog-file created successfully!");
-    });
-  });
-};
 
 async function run() {
   try {
-    let changelogFile = core.getInput("changelog-file", {required: true});
-
-    writeChangelogFile(
-        `${process.env.GITHUB_WORKSPACE}/.changelog-file￿`, changelogFile
-    ).then(
-        result => core.info(result)
-    );
 
     core.debug(`filepath: ${__dirname}`);
 
@@ -230,20 +210,6 @@ async function run() {
 
 run();
 
-
-/***/ }),
-
-/***/ 747:
-/***/ (function(module) {
-
-module.exports = require("fs");
-
-/***/ }),
-
-/***/ 765:
-/***/ (function(module) {
-
-module.exports = require("process");
 
 /***/ }),
 
