@@ -196,13 +196,13 @@ const exec = __webpack_require__(120);
 const fs = __webpack_require__(747);
 const process = __webpack_require__(765);
 
-const writeFile = (file, data) => {
+const writeChangelogFile = (file, data) => {
   return new Promise((resolve, reject) => {
     fs.writeFile(file, data, error => {
       if (error) {
         reject(error);
       }
-      resolve("semantiv version created successfully!");
+      resolve(".changelog-file created successfully!");
     });
   });
 };
@@ -211,10 +211,10 @@ async function run() {
   try {
     let changelogFile = core.getInput("changelog-file", {required: true});
 
-    writeFile(
+    writeChangelogFile(
         `${process.env.GITHUB_WORKSPACE}/.changelog-file￿`, changelogFile
     ).then(
-        result => core.debug(result)
+        result => core.info(result)
     );
 
     core.debug(`filepath: ${__dirname}`);

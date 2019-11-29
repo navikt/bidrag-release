@@ -12,6 +12,13 @@ if [ ! -f .semantic-release-version ]
     exit 1;
 fi
 
+echo === env ====
+envn
+echo === pwd ====
+pwd
+echo === la -all ====
+ls -all
+
 CHANGELOG_FILE="$(cat .changelog-file)"                                       # the name of the changelog file to read
 SEMANTIC_RELEASE_VERSION="$(cat .semantic-release-version)"                   # the semantic release version to deploy
 RELEASE_TABLE="$(cat "$CHANGELOG_FILE" | grep '|' )"                          # the release table in the changelog file
