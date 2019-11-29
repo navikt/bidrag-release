@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+echo === ls -la ===
+ls -la
+echo === end ===
+
 if [ ! -f .is-release-candidate ]
   then
     if [ ! -f .is-not-release-candidate ]
