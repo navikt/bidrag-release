@@ -10,7 +10,7 @@ async function run() {
     // Execute prepare-release bash script
     await exec.exec(`${__dirname}/src/prepare-release.sh`);
 
-    readPrepareRelease(".semantic_version", "semantic-version");
+    readPrepareRelease(".semantic_release_version", "semantic-release-version");
     readPrepareRelease(".release_version", "release-version");
     readPrepareRelease(".commit_sha", "commit-sha");
     readPrepareRelease(".new_snapshot_version", "new-snapshot-version");

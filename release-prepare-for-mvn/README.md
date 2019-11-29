@@ -8,4 +8,5 @@ Requires a github runner with maven and a github artifact being built
 with maven and runs on an environment which support bash-scripts.
 
 No inputs are required but the action will output the release-version,
-the new snapshot version, and the commit-sha, see `action.yml`.
+the samantic release version, the new snapshot version, and the
+commit-sha, see `action.yml`.

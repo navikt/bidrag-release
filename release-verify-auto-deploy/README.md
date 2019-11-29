@@ -1,11 +1,10 @@
 # bidrag-actions/release-verify-auto-deploy
 
-This action will prepare a maven artifact to be released. It will get the
-release version from the expected SNAPSHOT version of the project. This
-version will be bumped, ie. the pom.xml will be modified.
+This action will verify if an auto-deploy of a release can be done by
+checking if the changelog for this artifact has been updated with the
+version for this release.
 
-Requires a github runner with maven and a github artifact being built
-with maven and runs on an environment which support bash-scripts.
+Requires a github runner with maven and a github artifact being released
+with semantic release versioning.
 
-No inputs are required but the action will output the tagged-release,
-new snapshot version, and the commit-sha, see `action.yml`.
+Requires the semantic release version of this artifact, see `action.yml`.

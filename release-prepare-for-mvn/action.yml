@@ -1,7 +1,7 @@
 name: Prepare release
 description: Prepares release of a maven built project, outputs the tagged release (including git-sha)
 outputs:
-  semantic-version:
+  semantic-release-version:
     description: the semantic version of this release ('major.minor version'.'patch version')
   release-version:
     description: the release version ('semantic version'-'commit sha')

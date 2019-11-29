@@ -1,8 +1,8 @@
 name: Verify auto deploy
 description: Verifies that the new commit contains at least one section in the changelog file that contains the version that is to be released
 inputs:
-  release-version:
-    description: the version for the release, format as used in the changelog-file
+  semantic-release-version:
+    description: the semantic version for the release, format as used in the changelog-file
     required: true
   changelog-file:
     description: the file containing the changelog for this release

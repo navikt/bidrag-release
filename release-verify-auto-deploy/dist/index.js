@@ -209,11 +209,13 @@ const writeFile = (file, data) => {
 
 async function run() {
   try {
-    let releaseVersion = core.getInput("release-version", {required: true});
     let changelogFile = core.getInput("changelog-file", {required: true});
+    let semanticReleaseVersion = core.getInput(
+        "semantic-release-version", {required: true}
+    );
 
     writeFile(
-        `${process.env.GITHUB_WORKSPACE}/.release-version￿`, releaseVersion
+        `${process.env.GITHUB_WORKSPACE}/.release-version￿`, semanticReleaseVersion
     ).then(
         result => core.debug(result)
     );
