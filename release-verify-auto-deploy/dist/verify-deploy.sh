@@ -2,14 +2,14 @@
 
 if [ ! -f .changelog-file ]
   then
-    echo no .changelog-file found!
-    exit 1
+    >&2 echo no .changelog-file found!
+    exit 1;
 fi
 
 if [ ! -f .semantic-release-version ]
   then
-    echo no .semantic-release-version found!
-    exit 1
+    >&2 echo no .semantic-release-version found!
+    exit 1;
 fi
 
 CHANGELOG_FILE="$(cat .changelog-file)"                                       # the name of the changelog file to read
@@ -27,4 +27,4 @@ if [ $COUNT -lt 1 ]
 fi
 
 echo This artifact is eligable for auto deployment
-touch .is_release_candidate
+touch .is-release-candidate
