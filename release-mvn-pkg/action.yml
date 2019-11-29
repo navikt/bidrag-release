@@ -1,9 +1,5 @@
 name: Release maven package
 description: Releases a maven package on github
-inputs:
-  new-snapshot-version:
-    description: the new snapshot version to use after release
-    required: true
 runs:
   using: node12
   main: dist/index.js

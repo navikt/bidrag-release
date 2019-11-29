@@ -1,7 +1,7 @@
 #!/bin/bash
-mvn -B dependency:tree | tee .dependency.tree
+mvn -B dependency:tree | tee .dependency-tree
 
-DEPENNDENCIES="$(cat .dependency.tree | grep -e '|' -e +)"
+DEPENNDENCIES="$(cat .dependency-tree | grep -e '|' -e +)"
 COUNT="$(echo $DEPENNDENCIES | grep -c SNAPSHOT)"
 
 echo "Found $COUNT SNAPSHOT dependencies"

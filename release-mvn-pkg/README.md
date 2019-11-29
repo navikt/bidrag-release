@@ -6,5 +6,6 @@ Det forventes at steget blir kjørt på en linux/unix maskin og har installert m
 Prosjektet må derfor også bygges med maven.
 
 Det er forventet at prosjektet har blitt klargjort for en release og at den nye
-SNAPSHOT-versjonen blir gitt son input. Det som blir utført er en `mvn deploy` og
-etterpå en `mvn versions:set` med den nye snapshot versjonen
+SNAPSHOT-versjonen er å finne i filsystemet under filnavnet `.new-snapshot-version`.
+Det som blir utført av release skriptet som kjøres er en `mvn deploy` og etterpå
+settes versjon (`mvn versions:set`) med den nye snapshot versjonen lest fra fil

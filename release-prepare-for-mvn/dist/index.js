@@ -193,8 +193,6 @@ module.exports = require("events");
 
 const core = __webpack_require__(827);
 const exec = __webpack_require__(120);
-const fs = __webpack_require__(747);
-const process = __webpack_require__(765);
 
 async function run() {
   try {
@@ -203,60 +201,13 @@ async function run() {
     // Execute prepare-release bash script
     await exec.exec(__webpack_require__.ab + "prepare-release.sh");
 
-    readPrepareRelease(".semantic_release_version", "semantic-release-version");
-    readPrepareRelease(".release_version", "release-version");
-    readPrepareRelease(".commit_sha", "commit-sha");
-    readPrepareRelease(".new_snapshot_version", "new-snapshot-version");
-
   } catch (error) {
     core.setFailed(error.message);
   }
 }
 
-function readPrepareRelease(filename, output) {
-  let filepath = `${process.env.GITHUB_WORKSPACE}/${filename}`;
-
-  readFilePromise(filepath).then(
-      value => {
-        core.info(filename + ': ' + value);
-        core.setOutput(output, value);
-      }
-  );
-}
-
-function readFilePromise(filepath) {
-  const encoding = {encoding: 'utf-8'};
-
-  return new Promise((resolve, reject) => {
-        fs.readFile(filepath, encoding, function (error, data) {
-          if (error) {
-            console.log(error);
-            reject(error)
-          } else {
-            resolve(data)
-          }
-        })
-      }
-  );
-}
-
-// noinspection JSIgnoredPromiseFromCall
 run();
 
-
-/***/ }),
-
-/***/ 747:
-/***/ (function(module) {
-
-module.exports = require("fs");
-
-/***/ }),
-
-/***/ 765:
-/***/ (function(module) {
-
-module.exports = require("process");
 
 /***/ }),
 

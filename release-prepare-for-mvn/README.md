@@ -7,6 +7,10 @@ SNAPSHOT-version will be bumped, ie. the pom.xml will be modified.
 Requires a github runner with maven and a github artifact being built
 with maven and runs on an environment which support bash-scripts.
 
-No inputs are required but the action will output the release-version,
-the samantic release version, the new snapshot version, and the
-commit-sha, see `action.yml`.
+No inputs are required but all  the action will outputs will be written
+to the filesystem where the build is executing. The following files will
+be produces:
+- .release-version,
+- .semantic-release-version,
+- .new-snapshot-version
+- .commit-sha.
