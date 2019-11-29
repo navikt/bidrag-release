@@ -18,7 +18,7 @@ async function run() {
     let changelogFile = core.getInput("changelog-file", {required: true});
 
     writeFile(
-        `${process.env.GITHUB_WORKSPACE}/changelog-file￿`, changelogFile
+        `${process.env.GITHUB_WORKSPACE}/.changelog-file￿`, changelogFile
     ).then(
         result => core.debug(result)
     );
