@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-mvn -B help:evaluate -Dexpression=project.version | tee .project_version
+mvn -B help:evaluate -Dexpression=project.version | tee .project-version
 
-SEMANTIC_VERSION_WITH_SNAPSHOT=$(cat .project_version | grep -v INFO | grep -v WARNING) # eks: 1.2.3-SNAPSHOT
+SEMANTIC_VERSION_WITH_SNAPSHOT=$(cat .project-version | grep -v INFO | grep -v WARNING) # eks: 1.2.3-SNAPSHOT
 SEMANTIC_RELEASE_VERSION=${SEMANTIC_VERSION_WITH_SNAPSHOT%-*}                           # > 1.2.3
 
 MAJOR_AND_MINOR_VERSION=${SEMANTIC_RELEASE_VERSION%.*}                                  # > 1.2
