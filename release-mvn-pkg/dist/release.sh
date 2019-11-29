@@ -13,6 +13,7 @@ if [ ! -f .is-release-candidate ]
         exit 1;
     fi
 
+    git reset --hard
     echo This is not a release candidate. Will not deploy artifact
     exit 0;
 fi
