@@ -15,7 +15,7 @@ echo "echo Found $COUNT mentioning(s) of $SEMANTIC_RELEASE_VERSION in $CHANGELOG
 if [ $COUNT -lt 1 ]
   then
     echo This artifact is not eligable for auto deployment
-    touch .is-not-release-condidate
+    touch .is-not-release-candidate
     exit 0;
 fi
 
