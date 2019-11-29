@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-mvn -B dependency:tree | tee dependency.tree
+mvn -B dependency:tree | tee .dependency.tree
 
-COUNT="$(cat < dependency.tree | grep -e '|' -e '+' | grep -c SNAPSHOT)"
+COUNT="$(cat < .dependency.tree | grep -e '|' -e '+' | grep -c SNAPSHOT)"
 
 if [ "$COUNT" -eq 1 ]
   then
