@@ -10,39 +10,28 @@ async function run() {
     // Execute prepare-release bash script
     await exec.exec(`${__dirname}/src/prepare-release.sh`);
 
-    let filepath = `${process.env.GITHUB_WORKSPACE}/.tagged_release`;
-
-    prepareRelease(filepath).then(
-        value => {
-          core.info('the tagged release: ' + value);
-          core.setOutput("tagged-release", value);
-        }
-    );
-
-    filepath = `${process.env.GITHUB_WORKSPACE}/.commit_sha`;
-
-    prepareRelease(filepath).then(
-        value => {
-          core.info('the commit sha: ' + value);
-          core.setOutput("commit-sha", value);
-        }
-    );
-
-    filepath = `${process.env.GITHUB_WORKSPACE}/.new_snapshot_version`;
-
-    prepareRelease(filepath).then(
-        value => {
-          core.info('the new snapshot version: ' + value);
-          core.setOutput("new-snapshot-version", value);
-        }
-    );
+    readPrepareRelease(".semantic_release_version", "semantic-release-version");
+    readPrepareRelease(".release_version", "release-version");
+    readPrepareRelease(".commit_sha", "commit-sha");
+    readPrepareRelease(".new_snapshot_version", "new-snapshot-version");
 
   } catch (error) {
     core.setFailed(error.message);
   }
 }
 
-function prepareRelease(filepath) {
+function readPrepareRelease(filename, output) {
+  let filepath = `${process.env.GITHUB_WORKSPACE}/${filename}`;
+
+  readFilePromise(filepath).then(
+      value => {
+        core.info(filename + ': ' + value);
+        core.setOutput(output, value);
+      }
+  );
+}
+
+function readFilePromise(filepath) {
   const encoding = {encoding: 'utf-8'};
 
   return new Promise((resolve, reject) => {

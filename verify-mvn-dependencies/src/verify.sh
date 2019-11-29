@@ -1,20 +1,13 @@
 #!/bin/bash
-mvn -B dependency:tree | tee dependency.tree
+mvn -B dependency:tree | tee .dependency.tree
 
-if [ $? -gt 0 ]
-  then
-    echo "error running mvn -B dependency:tree in $PWD"
-    exit 1;
-fi
+DEPENNDENCIES="$(cat .dependency.tree | grep -e '|' -e +)"
+COUNT="$(echo $DEPENNDENCIES | grep -c SNAPSHOT)"
 
-export COUNT="$(cat < dependency.tree | grep -e '|' -e '+' | grep -c SNAPSHOT)"
+echo "Found $COUNT SNAPSHOT dependencies"
 
-if [ $COUNT -eq 1 ]
+if [ "$COUNT" -gt 0 ]
   then
-    >&2 echo ERROR: Found a SNAPSHOT dependency
-    exit 1;
-elif [ $COUNT -gt 0 ]
-  then
-    >&2 echo ERROR: Found $COUNT SNAPSHOT dependencies
+    >&2 echo ERROR: No SNAPSHOT dependencies allowed
     exit 1;
 fi

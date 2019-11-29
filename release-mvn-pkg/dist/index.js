@@ -193,14 +193,26 @@ module.exports = require("events");
 
 const core = __webpack_require__(827);
 const exec = __webpack_require__(120);
+const fs = __webpack_require__(747);
+const process = __webpack_require__(765);
 
 async function run() {
   try {
-    // Set the src-path
-    const src = __webpack_require__.ab + "src";
-    core.debug(`src: ${src}`);
+    core.debug(`filepath: ${__dirname}`);
 
-    // Execute verify bash script
+    let newSnapshotVersion = core.getInput(
+        "new-snapshot-version", {required: true}
+    );
+
+    let newSnapshotFile = `${process.env.GITHUB_WORKSPACE}/.new-snapshot-version`;
+
+    try {
+      fs.writeFileSync(newSnapshotFile, newSnapshotVersion);
+    } catch (err) {
+      core.setFailed(err.message)
+    }
+
+    // Execute release bash script
     await exec.exec(__webpack_require__.ab + "release.sh");
   } catch (error) {
     core.setFailed(error.message);
@@ -210,6 +222,20 @@ async function run() {
 // noinspection JSIgnoredPromiseFromCall
 run();
 
+
+/***/ }),
+
+/***/ 747:
+/***/ (function(module) {
+
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ 765:
+/***/ (function(module) {
+
+module.exports = require("process");
 
 /***/ }),
 

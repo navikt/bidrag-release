@@ -196,35 +196,57 @@ const exec = __webpack_require__(120);
 const fs = __webpack_require__(747);
 const process = __webpack_require__(765);
 
+const writeFile = (file, data) => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(file, data, error => {
+      if (error) {
+        reject(error);
+      }
+      resolve("semantiv version created successfully!");
+    });
+  });
+};
+
 async function run() {
   try {
+    let changelogFile = core.getInput("changelog-file", {required: true});
+    let semanticReleaseVersion = core.getInput(
+        "semantic-release-version", {required: true}
+    );
+
+    writeFile(
+        `${process.env.GITHUB_WORKSPACE}/.release-version￿`, semanticReleaseVersion
+    ).then(
+        result => core.debug(result)
+    );
+
+    writeFile(
+        `${process.env.GITHUB_WORKSPACE}/changelog-file￿`, changelogFile
+    ).then(
+        result => core.debug(result)
+    );
+
     core.debug(`filepath: ${__dirname}`);
 
     // Execute prepare-release bash script
-    await exec.exec(__webpack_require__.ab + "prepare-release.sh");
+    await exec.exec(__webpack_require__.ab + "verify-deploy.sh");
 
-    readPrepareRelease(".semantic_release_version", "semantic-release-version");
-    readPrepareRelease(".release_version", "release-version");
-    readPrepareRelease(".commit_sha", "commit-sha");
-    readPrepareRelease(".new_snapshot_version", "new-snapshot-version");
+    let readPath = `${process.env.GITHUB_WORKSPACE}/.is_release_candidate`;
 
-  } catch (error) {
+    readIsReleaseCandidate(readPath).then(
+        value => {
+          core.info('the is release candidate: ' + value);
+          core.setOutput("is-release-candidate", Boolean(value));
+        }
+    );
+
+  } catch
+      (error) {
     core.setFailed(error.message);
   }
 }
 
-function readPrepareRelease(filename, output) {
-  let filepath = `${process.env.GITHUB_WORKSPACE}/${filename}`;
-
-  readFilePromise(filepath).then(
-      value => {
-        core.info(filename + ': ' + value);
-        core.setOutput(output, value);
-      }
-  );
-}
-
-function readFilePromise(filepath) {
+function readIsReleaseCandidate(filepath) {
   const encoding = {encoding: 'utf-8'};
 
   return new Promise((resolve, reject) => {
