@@ -219,8 +219,7 @@ async function run() {
   }
 }
 
-// noinspection JSIgnoredPromiseFromCall
-run();
+run().then(core.debug('ran release-mvn-pkg'));
 
 
 /***/ }),
