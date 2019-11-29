@@ -216,15 +216,15 @@ async function run() {
 function readPrepareRelease(filename, output) {
   let filepath = `${process.env.GITHUB_WORKSPACE}/${filename}`;
 
-  prepareRelease(filepath).then(
+  readFilePromise(filepath).then(
       value => {
-        core.info('the tagged release: ' + value);
+        core.info(filename + ': ' + value);
         core.setOutput(output, value);
       }
   );
 }
 
-function prepareRelease(filepath) {
+function readFilePromise(filepath) {
   const encoding = {encoding: 'utf-8'};
 
   return new Promise((resolve, reject) => {
