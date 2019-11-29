@@ -1,5 +1,13 @@
 #!/bin/bash
 
+echo === env ====
+envn
+echo === pwd ====
+pwd
+echo === la -all ====
+ls -all
+ech === end debug ===
+
 if [ ! -f .changelog-file ]
   then
     >&2 echo no .changelog-file found!
@@ -11,13 +19,6 @@ if [ ! -f .semantic-release-version ]
     >&2 echo no .semantic-release-version found!
     exit 1;
 fi
-
-echo === env ====
-envn
-echo === pwd ====
-pwd
-echo === la -all ====
-ls -all
 
 CHANGELOG_FILE="$(cat .changelog-file)"                                       # the name of the changelog file to read
 SEMANTIC_RELEASE_VERSION="$(cat .semantic-release-version)"                   # the semantic release version to deploy
