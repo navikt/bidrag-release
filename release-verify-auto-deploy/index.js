@@ -6,8 +6,8 @@ async function run() {
 
     core.debug(`filepath: ${__dirname}`);
 
-    // Execute prepare-release bash script
-    await exec.exec(`${__dirname}/src/verify-deploy.sh`);
+    // Execute verify-deploy bash script
+    await exec.exec(`${__dirname}/verify-deploy.sh`);
 
   } catch
       (error) {

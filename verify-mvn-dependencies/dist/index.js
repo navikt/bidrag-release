@@ -196,10 +196,6 @@ const exec = __webpack_require__(120);
 
 async function run() {
   try {
-    // Set the src-path
-    const src = __webpack_require__.ab + "src";
-    core.debug(`src: ${src}`);
-
     // Execute verify bash script
     await exec.exec(__webpack_require__.ab + "verify.sh");
   } catch (error) {
