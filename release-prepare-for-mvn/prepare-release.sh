@@ -1,25 +1,28 @@
 #!/bin/bash
 set -e
 
-mvn -B help:evaluate -Dexpression=project.version | tee .project-version
+# example, current version: 1.2.3-SNAPSHOT
 
-SEMANTIC_VERSION_WITH_SNAPSHOT=$(cat .project-version | grep -v INFO | grep -v WARNING) # eks: 1.2.3-SNAPSHOT
-SEMANTIC_RELEASE_VERSION=${SEMANTIC_VERSION_WITH_SNAPSHOT%-*}                           # > 1.2.3
+# - fetch 1.2.3 of 1.2.3-SNAPSHOT version tag in pom.xml
+RELEASE_VERSION=$(cat pom.xml | grep version | grep SNAPSHOT | \
+  sed 's/version//g' | sed 's/  //' | sed 's/-SNAPSHOT//' | sed 's;[</>];;g')
 
-MAJOR_AND_MINOR_VERSION=${SEMANTIC_RELEASE_VERSION%.*}                                  # > 1.2
-PATCH_VERSION=$(echo "$SEMANTIC_RELEASE_VERSION" | sed "s/$MAJOR_AND_MINOR_VERSION.//") # > 3
+# - writes release version (1.2.3) to file for RELEASE_VERSION_FILE
+echo "$RELEASE_VERSION" > "$RELEASE_VERSION_FILE"
 
-NEW_PATCH_VERSION=$(($PATCH_VERSION+1))                                                 # > 4
-COMMIT_SHA=$(git rev-parse --short=12 HEAD)                                             # eks: 22ea0ff
+# updates to version 1.2.4-SNAPSHOT
+mvn -B release:update-versions
 
-RELEASE_VERSION="$SEMANTIC_RELEASE_VERSION-$COMMIT_SHA"                                 # > 1.2.3-22ea0ff
-NEW_SNAPSHOT_VERSION="$MAJOR_AND_MINOR_VERSION.$NEW_PATCH_VERSION-SNAPSHOT"             # > 1.2.4-SNAPSHOT
+# writes new snapshot version (1.2.4-SNAPSHOT) to file for NEW_SNAPSHOT_VERSION_FILE
+cat pom.xml | grep version | grep SNAPSHOT | \
+  sed 's/version//g' | sed 's/  //' | sed 's;[</>];;g' > "$NEW_SNAPSHOT_VERSION_FILE"
 
-echo "$SEMANTIC_RELEASE_VERSION" > .semantic-release-version                            # > 1.2.3
-echo "$RELEASE_VERSION" > .release-version                                              # > v1.2.3-22ea0ff
-echo "$COMMIT_SHA" > .commit-sha                                                        # > 22ea0ff
-echo "$NEW_SNAPSHOT_VERSION" > .new-snapshot-version                                    # > 1.2.4-SNAPSHOT
+# fetch git commit sha to COMMIT_SHA, ex: 22ea0ff
+COMMIT_SHA=$(git rev-parse --short=12 HEAD)
 
-# Update to semantic version with commit hash
-echo "Setting release version: $RELEASE_VERSION"
-mvn -B versions:set -DnewVersion="$RELEASE_VERSION"
+# creates RELEASE_VERSION_WITH_SHA
+RELEASE_VERSION_WITH_SHA="$RELEASE_VERSION-$COMMIT_SHA"
+
+# Update to new release version with commit hash
+echo "Setting release version: $RELEASE_VERSION_WITH_SHA"
+mvn -B versions:set -DnewVersion="$RELEASE_VERSION_WITH_SHA"

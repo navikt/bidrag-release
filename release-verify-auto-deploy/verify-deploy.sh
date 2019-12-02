@@ -1,18 +1,24 @@
 #!/bin/bash
 
-if [ ! -f .semantic-release-version ]
+if [ ! -f "$RELEASE_VERSION_FILE" ]
   then
-    >&2 echo no .semantic-release-version found!
+    >&2 "echo no $RELEASE_VERSION_FILE found!"
     exit 1;
 fi
 
-SEMANTIC_RELEASE_VERSION="$(cat .semantic-release-version)"               # the semantic release version to deploy
-RELEASE_TABLE="$(cat README.md | grep '|' )"                              # the release table in the changelog file
-COUNT="$(echo "$RELEASE_TABLE" | grep -c "$SEMANTIC_RELEASE_VERSION")"    # count all mentions of 'SEMANTIC_RELEASE_VERSION' in the RELEASE_TABLE
+if [ ! -f "$CHANGELOG_FILE" ]
+  then
+    >&2 "echo no $CHANGELOG_FILE found!"
+    exit 1;
+fi
 
-echo "echo Found $COUNT mentioning(s) of $SEMANTIC_RELEASE_VERSION in $CHANGELOG_FILE."
+RELEASE_VERSION="$(cat $RELEASE_VERSION_FILE)"                  # the release version to deploy
+RELEASE_TABLE="$(cat $CHANGELOG_FILE | grep '|' )"              # the release table in the changelog file
+COUNT="$(echo "$RELEASE_TABLE" | grep -c "$RELEASE_VERSION")"   # count all mentions of 'RELEASE_VERSION' in the 'RELEASE_TABLE' from the changelog
 
-if [ $COUNT -lt 1 ]
+echo "echo Found $COUNT mentioning(s) of $RELEASE_VERSION in $CHANGELOG_FILE."
+
+if [ "$COUNT" -lt 1 ]
   then
     echo This artifact is not eligable for auto deployment
     touch .is-not-release-candidate
