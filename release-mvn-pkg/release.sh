@@ -24,10 +24,10 @@ if [ ! -f .new-snapshot-version ]
     exit 1;
 fi
 
-NEW_SNAPSHOT_VERSION=$(cat .new-snapshot-version)
-
 echo "Running release"
 mvn -B --settings maven-settings.xml deploy -Dmaven.wagon.http.pool=false
+
+NEW_SNAPSHOT_VERSION=$(cat $NEW_SNAPSHOT_VERSION_FILE)
 
 # Update to new SNAPSHOT version
 echo "Setting SNAPSHOT version: $NEW_SNAPSHOT_VERSION"
