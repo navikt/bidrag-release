@@ -14,7 +14,8 @@ if [ ! -f .is-release-candidate ]
     fi
 
     git reset --hard
-    echo This is not a release candidate. Will not deploy artifact
+    echo "This is not a release candidate. Will not deploy artifact (only test the build)"
+    mvn -B clean package
     exit 0;
 fi
 
