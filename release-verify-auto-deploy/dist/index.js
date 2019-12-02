@@ -199,7 +199,7 @@ async function run() {
 
     core.debug(`filepath: ${__dirname}`);
 
-    // Execute prepare-release bash script
+    // Execute verify-deploy bash script
     await exec.exec(__webpack_require__.ab + "verify-deploy.sh");
 
   } catch
