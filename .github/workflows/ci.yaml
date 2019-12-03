@@ -1,0 +1,60 @@
+name: continious integration
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-16.04
+    name: build actions with ncc
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup node
+        uses: actions/setup-node@v1
+      - run: npm install
+      - run: npm i -g @zeit/ncc
+      - name: debug workspace
+        run: |
+          env
+          pwd
+          ls -all
+          cd release-mvn-pkg
+          ls -all
+      - name: install release-mvn-pkg
+        run: |
+          cd $RUNNER_WORKSPACE/bidrag-actions/release-mvn-pkg
+          npm install @actions/core
+          npm install @actions/exec
+          ncc build index.js
+      - name: install release-prepare-for-mvn
+        run: |
+          cd $RUNNER_WORKSPACE/bidrag-actions/release-prepare-for-mvn
+          npm install @actions/core
+          npm install @actions/exec
+          ncc build index.js
+      - name: install release-verify-auto-deploy
+        run: |
+          cd $RUNNER_WORKSPACE/bidrag-actions/release-verify-auto-deploy
+          npm install @actions/core
+          npm install @actions/exec
+          ncc build index.js
+      - name: install verify-mvn-dependencies
+        run: |
+          cd $RUNNER_WORKSPACE/bidrag-actions/verify-mvn-dependencies
+          npm install @actions/core
+          npm install @actions/exec
+          ncc build index.js
+
+      - name: commit ncc build in bidrag-actions
+        if: false
+        uses: EndBug/add-and-commit@v2.1.0
+        with:
+          author_name: Tor Egil Jacobsen
+          author_email: tor.egil.jacobsen@nav.no
+          message: "Fresh build of actions using npm"
+          path: "."
+          pattern: "."
+          force: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
