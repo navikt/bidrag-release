@@ -35,7 +35,7 @@ jobs:
           ncc build index.js
       - name: install release-verify-auto-deploy
         run: |
-          cd $RUNNER_WORKSPACE/bidrag-actions/release-verfiy-auto-deploy
+          cd $RUNNER_WORKSPACE/bidrag-actions/release-verify-auto-deploy
           npm install @actions/core
           npm install @actions/exec
           ncc build index.js
