@@ -46,13 +46,13 @@ jobs:
           npm install @actions/exec
           ncc build index.js
       - run: echo ${{github.ref}}
-      - name: commit ncc build in bidrag-actions
-        if: github.ref == 'refs/heads/feature-commit-build'
+      - name: commit ncc build in bidrag-actions on master branch
+        if: github.ref == 'refs/heads/master'
         uses: EndBug/add-and-commit@v2.1.0
         with:
           author_name: Tor Egil Jacobsen
           author_email: tor.egil.jacobsen@nav.no
-          message: "Fresh build of actions using npm"
+          message: "Fresh build of actions using npm and ncc"
           path: "."
           pattern: "."
           force: false
