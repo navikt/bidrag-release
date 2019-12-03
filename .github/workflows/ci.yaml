@@ -14,6 +14,12 @@ jobs:
         uses: actions/setup-node@v1
       - run: npm install
       - run: npm i -g @zeit/ncc
+      - name: debug workspace
+        run: |
+          pwd
+          ls -all
+          cd release-mvn-package
+          ls -all
       - name: install release-mvn-package
         run: |
           cd $RUNNER_WORKSPACE/release-mvn-pkg
