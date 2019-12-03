@@ -16,19 +16,20 @@ jobs:
       - run: npm i -g @zeit/ncc
       - name: debug workspace
         run: |
+          env
           pwd
           ls -all
-          cd release-mvn-package
+          cd release-mvn-pkg
           ls -all
-      - name: install release-mvn-package
+      - name: install release-mvn-pkg
         run: |
           cd $RUNNER_WORKSPACE/release-mvn-pkg
           npm install @actions/core
           npm install @actions/exec
           ncc build index.js
-      - name: install prepare-for-mvn
+      - name: install release-prepare-for-mvn
         run: |
-          cd $RUNNER_WORKSPACE/prepare-for-mvn
+          cd $RUNNER_WORKSPACE/release-prepare-for-mvn
           npm install @actions/core
           npm install @actions/exec
           ncc build index.js
