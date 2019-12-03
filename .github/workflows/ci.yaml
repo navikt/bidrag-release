@@ -1,6 +1,5 @@
 name: continious integration
 on:
-  pull-requests:
   push:
     branches:
       - '**'
