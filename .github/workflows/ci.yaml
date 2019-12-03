@@ -45,9 +45,9 @@ jobs:
           npm install @actions/core
           npm install @actions/exec
           ncc build index.js
-
+      - run: echo ${{github.ref}}
       - name: commit ncc build in bidrag-actions
-        if: false
+        if: github.ref == 'refs/heads/feature-commit-build'
         uses: EndBug/add-and-commit@v2.1.0
         with:
           author_name: Tor Egil Jacobsen
