@@ -23,25 +23,25 @@ jobs:
           ls -all
       - name: install release-mvn-pkg
         run: |
-          cd $RUNNER_WORKSPACE/release-mvn-pkg
+          cd $RUNNER_WORKSPACE/bidrag-actions/release-mvn-pkg
           npm install @actions/core
           npm install @actions/exec
           ncc build index.js
       - name: install release-prepare-for-mvn
         run: |
-          cd $RUNNER_WORKSPACE/release-prepare-for-mvn
+          cd $RUNNER_WORKSPACE/bidrag-actions/release-prepare-for-mvn
           npm install @actions/core
           npm install @actions/exec
           ncc build index.js
       - name: install release-verify-auto-deploy
         run: |
-          cd $RUNNER_WORKSPACE/release-verfiy-auto-deploy
+          cd $RUNNER_WORKSPACE/bidrag-actions/release-verfiy-auto-deploy
           npm install @actions/core
           npm install @actions/exec
           ncc build index.js
       - name: install verify-mvn-dependencies
         run: |
-          cd $RUNNER_WORKSPACE/verify-mvn-dependencies
+          cd $RUNNER_WORKSPACE/bidrag-actions/verify-mvn-dependencies
           npm install @actions/core
           npm install @actions/exec
           ncc build index.js
