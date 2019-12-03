@@ -16,25 +16,25 @@ jobs:
       - run: npm i -g @zeit/ncc
       - name: install release-mvn-package
         run: |
-          cd $RUNNER_WORKSPACE/bidrag-actions/release-mvn-package
+          cd $RUNNER_WORKSPACE/release-mvn-package
           npm install @actions/core
           npm install @actions/exec
           ncc build index.js
       - name: install prepare-for-mvn
         run: |
-          cd $RUNNER_WORKSPACE/bidrag-actions/prepare-for-mvn
+          cd $RUNNER_WORKSPACE/prepare-for-mvn
           npm install @actions/core
           npm install @actions/exec
           ncc build index.js
       - name: install release-verify-auto-deploy
         run: |
-          cd $RUNNER_WORKSPACE/bidrag-actions/release-verfiy-auto-deploy
+          cd $RUNNER_WORKSPACE/release-verfiy-auto-deploy
           npm install @actions/core
           npm install @actions/exec
           ncc build index.js
       - name: install verify-mvn-dependencies
         run: |
-          cd $RUNNER_WORKSPACE/bidrag-actions/verify-mvn-dependencies
+          cd $RUNNER_WORKSPACE/verify-mvn-dependencies
           npm install @actions/core
           npm install @actions/exec
           ncc build index.js
