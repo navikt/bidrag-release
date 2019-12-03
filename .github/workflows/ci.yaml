@@ -16,7 +16,7 @@ jobs:
       - run: npm i -g @zeit/ncc
       - name: install release-mvn-package
         run: |
-          cd $RUNNER_WORKSPACE/release-mvn-package
+          cd $RUNNER_WORKSPACE/release-mvn-pkg
           npm install @actions/core
           npm install @actions/exec
           ncc build index.js
