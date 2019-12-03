@@ -14,7 +14,8 @@ if [ ! -f .is-release-candidate ]
     fi
 
     git reset --hard
-    echo This is not a release candidate. Will not deploy artifact
+    echo "This is not a release candidate. Will not deploy artifact (only test the build)"
+    mvn -B clean package
     exit 0;
 fi
 
@@ -24,10 +25,10 @@ if [ ! -f .new-snapshot-version ]
     exit 1;
 fi
 
-NEW_SNAPSHOT_VERSION=$(cat .new-snapshot-version)
-
 echo "Running release"
 mvn -B --settings maven-settings.xml deploy -Dmaven.wagon.http.pool=false
+
+NEW_SNAPSHOT_VERSION=$(cat $NEW_SNAPSHOT_VERSION_FILE)
 
 # Update to new SNAPSHOT version
 echo "Setting SNAPSHOT version: $NEW_SNAPSHOT_VERSION"
