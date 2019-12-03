@@ -3,9 +3,9 @@ Github Actions spesialisert for team bidrag
 
 ### Hovedregel for design:
 Alt blir utført av bash-scripter slik at det enkelt kan testes på reell kodebase uten å måtte bygge med github. Alle "actions" som trenger input får
-dette som form av tekst skrevet til enkle filer på filsystemet med navn lik `.filnavn` - dette blir angitt som miljøvariabler til hver action
+dette som form av tekst skrevet til enkle filer på filsystemet og dette navngis med miljøvariabler til hver action
 
-Unntakene til dette er prosessering som krever autentisering. Der må otså dette legges på som miljøvariabel, eks: `GITHUB_TOKEN`.
+Utenom miljøvariabler for filnavn, så finnes også miljøvariabler for autentisering (når action trenger dette), eks: `GITHUB_TOKEN`.
 
 ### Continuous integration
 ![](https://github.com/navikt/bidrag-commons/workflows/continious%20integration/badge.svg)
