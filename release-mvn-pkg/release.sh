@@ -9,7 +9,7 @@ if [ ! -f .is-release-candidate ]
   then
     if [ ! -f .is-not-release-candidate ]
       then
-        >&2 echo "ERROR! No verification of artifact is eligable for deploy has been done"
+        >&2 echo "::error No verification of artifact is eligable for deploy has been done"
         exit 1;
     fi
 
@@ -19,9 +19,9 @@ if [ ! -f .is-release-candidate ]
     exit 0;
 fi
 
-if [ ! -f .new-snapshot-version ]
+if [ ! -f "$NEW_SNAPSHOT_VERSION_FILE" ]
   then
-    >&2 echo .new-snapshot-version is not present
+    >&2 echo "::error $NEW_SNAPSHOT_VERSION_FILE is not present"
     exit 1;
 fi
 
