@@ -1,4 +1,4 @@
-# bidrag-actions/prepare-release-for-mvn
+# bidrag-actions/prepare-release-mvn-pkg
 
 This action will prepare a maven artifact to be released. It will get the
 release version from the expected SNAPSHOT version of the project. The
