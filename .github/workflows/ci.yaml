@@ -26,9 +26,9 @@ jobs:
           cd $RUNNER_WORKSPACE/bidrag-actions/release-mvn-pkg
           npm install
           ncc build index.js
-      - name: install release-prepare-for-mvn
+      - name: install release-prepare-mvn-pkg
         run: |
-          cd $RUNNER_WORKSPACE/bidrag-actions/release-prepare-for-mvn
+          cd $RUNNER_WORKSPACE/bidrag-actions/release-prepare-mvn-pkg
           npm install
           ncc build index.js
       - name: install release-verify-auto-deploy
