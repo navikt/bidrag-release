@@ -1,5 +1,8 @@
 name: Prepare release
-description: Prepares release of a maven built project, writes all preparations to files, see `README.md`
+description: Prepares release of a maven built project, writes all preparations to files , see `release-prepare-for-mvn/README.md`
 runs:
   using: node12
   main: dist/index.js
+outputs:
+  release-version:
+    description: "the full version of the release, ie: <version-number>-<commit hash>"

@@ -8,9 +8,10 @@ Requires a github runner with maven and a github artifact being built
 with maven and runs on an environment which support bash-scripts.
 
 No inputs are required but all  the action will outputs will be written
-to the filesystem where the build is executing. The following files will
-be produces:
-- .release-version,
-- .semantic-release-version,
-- .new-snapshot-version
-- .commit-sha.
+to the filesystem where the build is executing.
+
+The following files will be produced (if named in environment variable):
+- RELEASE_VERSION_FILE, for instance `.release-version`
+- NEW_SNAPSHOT_VERSION_FILE, for instance, `.new-snapshot-version`
+
+This action will also give the release-version as output if needed, see `action.yml`
