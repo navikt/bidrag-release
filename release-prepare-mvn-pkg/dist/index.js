@@ -763,7 +763,6 @@ const exec = __webpack_require__(337);
 
 async function run() {
   try {
-    core.debug(`filepath: ${__dirname}`);
 
     // Execute prepare-release bash script
     await exec.exec(__webpack_require__.ab + "prepare-release.sh");

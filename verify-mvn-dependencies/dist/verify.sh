@@ -8,6 +8,6 @@ echo "Found $COUNT SNAPSHOT dependencies"
 
 if [ "$COUNT" -gt 0 ]
   then
-    >&2 echo ERROR: No SNAPSHOT dependencies allowed
+    >&2 echo "::error No SNAPSHOT dependencies allowed"
     exit 1;
 fi

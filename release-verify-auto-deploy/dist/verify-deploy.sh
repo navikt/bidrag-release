@@ -2,13 +2,13 @@
 
 if [ ! -f "$RELEASE_VERSION_FILE" ]
   then
-    >&2 "echo no $RELEASE_VERSION_FILE found!"
+    >&2 echo "::error no $RELEASE_VERSION_FILE found!"
     exit 1;
 fi
 
 if [ ! -f "$CHANGELOG_FILE" ]
   then
-    >&2 "echo no $CHANGELOG_FILE found!"
+    >&2 "::error echo no $CHANGELOG_FILE found!"
     exit 1;
 fi
 
