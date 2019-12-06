@@ -12,8 +12,8 @@ if [ ! -f "$CHANGELOG_FILE" ]
     exit 1;
 fi
 
-RELEASE_VERSION="$(cat "$RELEASE_VERSION_FILE")"                  # the release version to deploy
-RELEASE_TABLE="$(cat "$CHANGELOG_FILE" | grep '|' )"              # the release table in the changelog file
+RELEASE_VERSION="$(cat "$RELEASE_VERSION_FILE")"                # the release version to deploy
+RELEASE_TABLE="$(cat "$CHANGELOG_FILE" | grep '|' )"            # the release table in the changelog file
 COUNT="$(echo "$RELEASE_TABLE" | grep -c "$RELEASE_VERSION")"   # count all mentions of 'RELEASE_VERSION' in the 'RELEASE_TABLE' from the changelog
 
 echo "echo Found $COUNT mentioning(s) of $RELEASE_VERSION in $CHANGELOG_FILE."
