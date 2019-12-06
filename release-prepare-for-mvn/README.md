@@ -13,5 +13,3 @@ to the filesystem where the build is executing.
 The following files will be produced (if named in environment variable):
 - RELEASE_VERSION_FILE, for instance `.release-version`
 - NEW_SNAPSHOT_VERSION_FILE, for instance, `.new-snapshot-version`
-
-This action will also give the release-version as output if needed, see `action.yml`
