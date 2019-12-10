@@ -22,26 +22,21 @@ jobs:
           cd release-mvn-pkg
           ls -all
       - name: install release-mvn-pkg
-        run: |
-          cd $RUNNER_WORKSPACE/bidrag-actions/release-mvn-pkg
-          npm install
-          ncc build index.js
+        uses: navikt/biddrag-actions/build-node-artifact@feature-node-artifact
+        with:
+          artifact_folder: bidrag-actions/build-node-artifact
       - name: install release-prepare-mvn-pkg
-        run: |
-          cd $RUNNER_WORKSPACE/bidrag-actions/release-prepare-mvn-pkg
-          npm install
-          ncc build index.js
+        uses: navikt/biddrag-actions/build-node-artifact@feature-node-artifact
+        with:
+          artifact_folder: bidrag-actions/release-prepare-mvn-pkg
       - name: install release-verify-auto-deploy
-        run: |
-          cd $RUNNER_WORKSPACE/bidrag-actions/release-verify-auto-deploy
-          npm install
-          ncc build index.js
+        uses: navikt/biddrag-actions/build-node-artifact@feature-node-artifact
+        with:
+          artifact_folder: bidrag-actions/release-verify-auto-deploy
       - name: install verify-mvn-dependencies
-        run: |
-          cd $RUNNER_WORKSPACE/bidrag-actions/verify-mvn-dependencies
-          npm install
-          ncc build index.js
-      - run: echo ${{github.ref}}
+        uses: navikt/biddrag-actions/build-node-artifact@feature-node-artifact
+        with:
+          artifact_folder: bidrag-actions/verify-mvn-dependencies
       - name: commit ncc build in bidrag-actions on master branch
         if: github.ref == 'refs/heads/master'
         uses: EndBug/add-and-commit@v2.1.0
