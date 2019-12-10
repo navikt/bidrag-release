@@ -22,19 +22,19 @@ jobs:
           cd release-mvn-pkg
           ls -all
       - name: install release-mvn-pkg
-        uses: navikt/biddrag-actions/build-node-artifact@feature-node-artifact
+        uses: navikt/bidrag-actions/build-node-artifact@feature-node-artifact
         with:
           artifact_folder: bidrag-actions/build-node-artifact
       - name: install release-prepare-mvn-pkg
-        uses: navikt/biddrag-actions/build-node-artifact@feature-node-artifact
+        uses: navikt/bidrag-actions/build-node-artifact@feature-node-artifact
         with:
           artifact_folder: bidrag-actions/release-prepare-mvn-pkg
       - name: install release-verify-auto-deploy
-        uses: navikt/biddrag-actions/build-node-artifact@feature-node-artifact
+        uses: navikt/bidrag-actions/build-node-artifact@feature-node-artifact
         with:
           artifact_folder: bidrag-actions/release-verify-auto-deploy
       - name: install verify-mvn-dependencies
-        uses: navikt/biddrag-actions/build-node-artifact@feature-node-artifact
+        uses: navikt/bidrag-actions/build-node-artifact@feature-node-artifact
         with:
           artifact_folder: bidrag-actions/verify-mvn-dependencies
       - name: commit ncc build in bidrag-actions on master branch
