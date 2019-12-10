@@ -12,6 +12,3 @@ Utenom miljøvariabler for filnavn, så finnes også miljøvariabler for autenti
 
 Det er lagt inn en workflow for å bygge alle actions med npm og ncc når master branch kjører. Derfor er det bare filene `/<action>/index.js` og 
 `<action>/<bash>.sh` som skal endres.
-
-Hvis java script filene endrer avhengigheter (altså: `... requires("<avhengighet"))` så gjør en manuell `npm install <avhengighet>` og sjekk inn den
-endrede `package.json`.
