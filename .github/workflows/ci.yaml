@@ -16,10 +16,14 @@ jobs:
       - run: npm i -g @zeit/ncc
       - name: debug workspace
         run: env
-      - name: install release-mvn-pkg
+      - name: install build-node-artifact
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
           artifact_folder: bidrag-actions/build-node-artifact
+      - name: install release-mvn-pkg
+        uses: navikt/bidrag-actions/build-node-artifact@master
+        with:
+          artifact_folder: bidrag-actions/release-mvn-pkg
       - name: install release-prepare-mvn-pkg
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
