@@ -1,5 +1,14 @@
-name: Prepare release
-description: Prepares release of a maven built project, writes all preparations to files, see `release-prepare-mvn-pkg/README.md`
+name: Prepare maven release
+description: Prepares release of a maven built project, writes preparations to files, see `release-prepare-mvn-pkg/README.md`
+inputs:
+  new_release_version_file_name:
+    description: what to call the file with the new SNAPSHOT version
+    required: true
+    default: '.new-snapshot-version'
+  release_version_file_name:
+    description: what to call the file with the release version
+    required: true
+    default: '.release-version'
 runs:
   using: node12
   main: dist/index.js
