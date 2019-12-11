@@ -1,22 +1,22 @@
 #!/bin/bash
 
-if [ ! -f "$RELEASE_VERSION_FILE" ]
+if [ ! -f "$INPUT_RELEASE_VERSION_FILE" ]
   then
-    >&2 echo "::error no $RELEASE_VERSION_FILE found!"
+    >&2 echo "::error no $INPUT_RELEASE_VERSION_FILE found!"
     exit 1;
 fi
 
-if [ ! -f "$CHANGELOG_FILE" ]
+if [ ! -f "$INPUT_CHANGELOG_FILE" ]
   then
-    >&2 "::error echo no $CHANGELOG_FILE found!"
+    >&2 "::error echo no $INPUT_CHANGELOG_FILE found!"
     exit 1;
 fi
 
-RELEASE_VERSION="$(cat "$RELEASE_VERSION_FILE")"                # the release version to deploy
-RELEASE_TABLE="$(cat "$CHANGELOG_FILE" | grep '|' )"            # the release table in the changelog file
-COUNT="$(echo "$RELEASE_TABLE" | grep -c "$RELEASE_VERSION")"   # count all mentions of 'RELEASE_VERSION' in the 'RELEASE_TABLE' from the changelog
+RELEASE_VERSION="$(cat "$INPUT_RELEASE_VERSION_FILE")"                # the release version to deploy
+RELEASE_TABLE="$(cat "$INPUT_CHANGELOG_FILE" | grep '|' )"            # the release table in the changelog file
+COUNT="$(echo "$RELEASE_TABLE" | grep -c "$RELEASE_VERSION")"         # count all mentions of 'RELEASE_VERSION' in the 'RELEASE_TABLE' from the changelog
 
-echo "echo Found $COUNT mentioning(s) of $RELEASE_VERSION in $CHANGELOG_FILE."
+echo "echo Found $COUNT mentioning(s) of $RELEASE_VERSION in $INPUT_CHANGELOG_FILE."
 
 if [ "$COUNT" -lt 1 ]
   then

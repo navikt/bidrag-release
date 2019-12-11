@@ -19,16 +19,16 @@ if [ ! -f .is-release-candidate ]
     exit 0;
 fi
 
-if [ ! -f "$NEW_SNAPSHOT_VERSION_FILE" ]
+if [ ! -f "$INPUT_NEW_SNAPSHOT_VERSION_FILE" ]
   then
-    >&2 echo "::error $NEW_SNAPSHOT_VERSION_FILE is not present"
+    >&2 echo "::error $INPUT_NEW_SNAPSHOT_VERSION_FILE is not present"
     exit 1;
 fi
 
 echo "Running release"
 mvn -B --settings maven-settings.xml deploy -Dmaven.wagon.http.pool=false
 
-NEW_SNAPSHOT_VERSION=$(cat $NEW_SNAPSHOT_VERSION_FILE)
+NEW_SNAPSHOT_VERSION=$(cat $INPUT_NEW_SNAPSHOT_VERSION_FILE)
 
 # Update to new SNAPSHOT version
 echo "Setting SNAPSHOT version: $NEW_SNAPSHOT_VERSION"
