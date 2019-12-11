@@ -1,5 +1,9 @@
 name: Release maven package
 description: Releases a maven package on github
+inputs:
+  new_snapshot_version_file:
+    description: file containing the value of the new SNAPSHOT-version to use after release of current project object model (pom.xml for maven)
+    required: true
 runs:
   using: node12
   main: dist/index.js
