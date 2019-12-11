@@ -3,7 +3,7 @@ Github Actions spesialisert for team bidrag
 
 ### Hovedregel for design:
 Alt blir utført av bash-scripter slik at det enkelt kan testes på reell kodebase uten å måtte bygge med github. Alle "actions" som trenger input får
-dette som form av tekst skrevet til enkle filer på filsystemet og dette navngis med miljøvariabler til hver action
+dette som form av tekst skrevet til enkle filer på filsystemet og dette angis som inputs til hver action (som blir oversatt til miljøvariabler i script)
 
 Utenom miljøvariabler for filnavn, så finnes også miljøvariabler for autentisering (når action trenger dette), eks: `GITHUB_TOKEN`.
 
