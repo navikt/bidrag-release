@@ -36,22 +36,11 @@ jobs:
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
           artifact_folder: bidrag-actions/verify-mvn-dependencies
-      - name: test add-and-commit fork
-        uses: jactor-rises/add-and-commit@master
-        with:
-          message: "Fresh build of actions using npm and ncc by {{ github.actor }}"
-          path: "."
-          pattern: "."
-          force: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: commit ncc build in bidrag-actions on master branch
         if: github.ref == 'refs/heads/master'
-        uses: EndBug/add-and-commit@v2.1.0
+        uses: jactor-rises/add-and-commit@master
         with:
-          author_name: Tor Egil Jacobsen
-          author_email: tor.egil.jacobsen@nav.no
-          message: "Fresh build of actions using npm and ncc by {{ github.actor }}"
+          message: "Fresh build of actions using npm and ncc by ${{ github.actor }}"
           path: "."
           pattern: "."
           force: false

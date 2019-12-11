@@ -4,11 +4,11 @@ inputs:
   changelog_file:
     description: the file containing the changelog for this release
     required: true
-    default: 'README.md'
+    default: README.md
   release_version_file:
     description: the file containing this release version
     required: true
-    default: '.release-version'
+    default: .release-version
 runs:
   using: node12
   main: dist/index.js
