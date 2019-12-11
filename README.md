@@ -11,4 +11,4 @@ Utenom miljøvariabler for filnavn, så finnes også miljøvariabler for autenti
 ![](https://github.com/navikt/bidrag-commons/workflows/continious%20integration/badge.svg)
 
 Det er lagt inn en workflow for å bygge alle actions med npm og ncc når master branch kjører. Derfor er det bare filene `/<action>/index.js` og 
-`<action>/<bash>.sh` som skal endres.
+`/<action>/<bash>.sh` som skal endres.
