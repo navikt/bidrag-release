@@ -37,7 +37,7 @@ jobs:
         with:
           artifact_folder: bidrag-actions/verify-mvn-dependencies
       - name: test add-and-commit fork
-        uses: jactor-rises/actions/add-and-commit@master
+        uses: jactor-rises/add-and-commit@master
         with:
           message: "Fresh build of actions using npm and ncc by {{ github.actor }}"
           path: "."
