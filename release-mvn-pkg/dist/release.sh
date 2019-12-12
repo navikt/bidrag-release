@@ -5,17 +5,15 @@ echo === ls -la ===
 ls -la
 echo === end ===
 
-if [ ! -f .is-release-candidate ]
+if [ ! -e .is-release-candidate ]
   then
     if [ ! -f .is-not-release-candidate ]
       then
-        >&2 echo "::error No verification of artifact is eligable for deploy has been done"
+        >&2 echo "::error No verification of artifact is eligable for deploy has been done, please use '/release-verify-auto-deploy'"
         exit 1;
     fi
 
     git reset --hard
-    echo "This is not a release candidate. Will not deploy artifact (only test the build)"
-    mvn -B clean package
     exit 0;
 fi
 
@@ -26,7 +24,7 @@ if [ ! -f "$INPUT_NEW_SNAPSHOT_VERSION_FILE" ]
 fi
 
 echo "Running release"
-mvn -B --settings maven-settings.xml deploy -Dmaven.wagon.http.pool=false
+mvn -B --settings maven-settings.xml deploy -DskipTests -Dmaven.wagon.http.pool=false
 
 NEW_SNAPSHOT_VERSION=$(cat $INPUT_NEW_SNAPSHOT_VERSION_FILE)
 
