@@ -14,6 +14,7 @@ if [ ! -e .is-release-candidate ]
     fi
 
     git reset --hard
+    echo "The artifact is not a release candidate, git reset --hard..."
     exit 0;
 fi
 
