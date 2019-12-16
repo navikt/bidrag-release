@@ -36,8 +36,7 @@ jobs:
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
           artifact_folder: bidrag-actions/verify-mvn-dependencies
-      - name: commit ncc build in bidrag-actions on master branch
-        if: github.ref == 'refs/heads/master'
+      - name: commit ncc build in bidrag-actions
         uses: jactor-rises/add-and-commit@master
         with:
           message: "Fresh build of actions using npm and ncc by ${{ github.actor }}"
