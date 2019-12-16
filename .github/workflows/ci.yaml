@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-16.04
     name: build actions with ncc
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Setup node
         uses: actions/setup-node@v1
       - run: npm install
@@ -37,7 +37,7 @@ jobs:
         with:
           artifact_folder: bidrag-actions/verify-mvn-dependencies
       - name: commit ncc build in bidrag-actions
-        uses: jactor-rises/add-and-commit@master
+        uses: Endbug/add-and-commit@v2.3.0
         with:
           message: "Fresh build of actions using npm and ncc by ${{ github.actor }}"
           path: "."
