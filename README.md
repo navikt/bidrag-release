@@ -8,6 +8,6 @@ dette som form av tekst skrevet til enkle filer på filsystemet og dette angis s
 Utenom miljøvariabler for filnavn, så finnes også miljøvariabler for autentisering (når action trenger dette), eks: `GITHUB_TOKEN`.
 
 ### Continuous integration
-![](https://github.com/navikt/bidrag-commons/workflows/build%20actions/badge.svg)
+![](https://github.com/navikt/bidrag-actions/workflows/build%20actions/badge.svg)
 
 Det er lagt inn en workflow for å bygge alle actions med npm og ncc. Derfor er det bare filene `/<action>/index.js` og `/<action>/<bash>.sh` som skal endres.
