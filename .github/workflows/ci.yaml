@@ -1,4 +1,4 @@
-name: continious integration
+name: build actions
 on:
   push:
     branches:
