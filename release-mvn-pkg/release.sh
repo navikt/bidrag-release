@@ -5,7 +5,7 @@ echo === ls -la ===
 ls -la
 echo === end ===
 
-if [ ! -e .is-release-candidate ]
+if [ ! -f .is-release-candidate ]
   then
     if [ ! -f .is-not-release-candidate ]
       then
