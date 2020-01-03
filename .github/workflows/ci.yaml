@@ -31,16 +31,18 @@ jobs:
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
           artifact_folder: bidrag-actions/release-verify-auto-deploy
+      - name: install tag-and-commit
+        uses: navikt/bidrag-actions/build-node-artifact@master
+        with:
+          artifact_folder: bidrag-actions/tag-and-commit
       - name: install verify-mvn-dependencies
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
           artifact_folder: bidrag-actions/verify-mvn-dependencies
       - name: commit ncc build in bidrag-actions
-        uses: Endbug/add-and-commit@v2.3.0
+        uses: navikt/bidrag-actions/tag-and-commit@master
         with:
-          message: "Fresh build of actions using npm and ncc by ${{ github.actor }}"
-          path: "."
+          message: "Fresh build of actions using npm and ncc"
           pattern: "."
-          force: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
