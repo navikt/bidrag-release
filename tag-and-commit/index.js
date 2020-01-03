@@ -22,14 +22,14 @@ function setAuthorInformation() {
 
     const { author } = require(eventPath).head_commit;
 
-    process.env.INPUT_AUTHOR_NAME = author.name;
-    process.env.INPUT_AUTHOR_EMAIL = author.email;
+    process.env.AUTHOR_NAME = author.name;
+    process.env.AUTHOR_EMAIL = author.email;
 
   } else {
     core.warning('No event path available, unable to fetch author info.');
 
-    process.env.INPUT_AUTHOR_NAME = 'Tag & Commit Action';
-    process.env.INPUT_AUTHOR_EMAIL = 'bidrag-actions@github.com';
+    process.env.AUTHOR_NAME = 'Tag & Commit Action';
+    process.env.AUTHOR_EMAIL = 'bidrag-actions@github.com';
   }
 
   core.info(`Using '${process.env.AUTHOR_NAME} <${process.env.AUTHOR_EMAIL}>' as author.`);
