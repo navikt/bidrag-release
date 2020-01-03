@@ -19,6 +19,8 @@ fi
 
 if ! git diff --quiet
 then
+  echo "commiting changes: $QUOTED_MESSAGE"
+
   git add "$INPUT_PATTERN"
   git commit -m "$QUOTED_MESSAGE"
   git push
