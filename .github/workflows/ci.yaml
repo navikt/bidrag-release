@@ -19,10 +19,6 @@ jobs:
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
           artifact_folder: bidrag-actions/build-node-artifact
-      - name: install tag-and-commit
-        uses: navikt/bidrag-actions/build-node-artifact@master
-        with:
-          artifact_folder: bidrag-actions/tag-and-commit
       - name: install release-mvn-pkg
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
@@ -35,12 +31,16 @@ jobs:
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
           artifact_folder: bidrag-actions/release-verify-auto-deploy
+      - name: install tag-and-commit
+        uses: navikt/bidrag-actions/build-node-artifact@master
+        with:
+          artifact_folder: bidrag-actions/tag-and-commit
       - name: install verify-mvn-dependencies
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
           artifact_folder: bidrag-actions/verify-mvn-dependencies
       - name: commit ncc build in bidrag-actions
-        uses: navikt/bidrag-actions/tag-and-commit@feature-push-git
+        uses: navikt/bidrag-actions/tag-and-commit@master
         with:
           message: "Fresh build of actions using npm and ncc"
           pattern: "."
