@@ -13,7 +13,6 @@ then
   INPUT_MESSAGE=$(echo $INPUT_MESSAGE | sed "s/{}/$TAG_CONTENT/")
 
   git tag -a "$TAG_CONTENT" -m "$INPUT_MESSAGE"
-
   git push origin "$TAG_CONTENT"
 fi
 
