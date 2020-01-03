@@ -717,6 +717,8 @@ function setAuthorInformation() {
   const eventPath = process.env.GITHUB_EVENT_PATH;
 
   if (eventPath) {
+    core.info(eventPath);
+
     const { author } = require(eventPath).head_commit;
 
     process.env.INPUT_AUTHOR_NAME = author.name;
