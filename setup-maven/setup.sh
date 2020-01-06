@@ -7,7 +7,7 @@ MAVEN_REPO=~/.m2
 
 if [ -d "$MAVEN_REPO" ]; then
   echo "Using existing $MAVEN_REPO"
-or
+else
   echo "Creating $MAVEN_REPO"
   mkdir "$MAVEN_REPO"
 fi
