@@ -9,7 +9,7 @@ script)
 Utenom miljøvariabler for filnavn, så finnes også miljøvariabler for autentisering (når action trenger dette), eks: `GITHUB_TOKEN`.
 
 Andre sider ved design av disse "actions", er at de er laget for å kjøre sammen. Dvs. at enkelte actions produserer filer som kan brukes av andre
-"actions". Dette er blant annet en sterk knytning mellom `release-verify-auto-deploy` og `tag-and-commit`. Hvis auto-deploy ikke kan gjøres vil ikke
+"actions". Det er blant annet en sterk knytning mellom `release-verify-auto-deploy` og `tag-and-commit`. Hvis auto-deploy ikke kan gjøres vil ikke
 noen tagging av release gjøres. Med andre ord, så er noen av disse "actions" sterk knyttet.
 
 ### Continuous integration
