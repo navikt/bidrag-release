@@ -35,10 +35,10 @@ jobs:
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
           artifact_folder: bidrag-actions/tag-and-commit
-      - name: install setupt-maven
+      - name: install setup-maven
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
-          artifact_folder: bidrag-actions/setupt-maven
+          artifact_folder: bidrag-actions/setup-maven
       - name: install verify-mvn-dependencies
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
