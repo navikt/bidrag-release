@@ -13,4 +13,3 @@ else
 fi
 
 echo "<settings><servers><server><id>github</id><username>$GITHUB_ACTOR</username><password>$GITHUB_TOKEN</password></server></servers></settings>" > "$MAVEN_REPO"/settings.xml
-cat "$MAVEN_REPO"/settings.xml
