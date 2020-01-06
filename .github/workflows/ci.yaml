@@ -15,10 +15,6 @@ jobs:
       - run: npm i -g @zeit/ncc
       - name: debug workspace
         run: env
-      - name: install build-mvn-app-on-github
-        uses: navikt/bidrag-actions/build-node-artifact@master
-        with:
-          artifact_folder: bidrag-actions/build-mvn-app-on-github
       - name: install build-node-artifact
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
@@ -39,6 +35,10 @@ jobs:
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
           artifact_folder: bidrag-actions/tag-and-commit
+      - name: install setupt-maven
+        uses: navikt/bidrag-actions/build-node-artifact@master
+        with:
+          artifact_folder: bidrag-actions/setupt-maven
       - name: install verify-mvn-dependencies
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
