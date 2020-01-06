@@ -1211,7 +1211,7 @@ async function run() {
   try {
 
     // Execute tag bash script
-    await exec.exec(__webpack_require__.ab + "build.sh");
+    await exec.exec(__webpack_require__.ab + "setup.sh");
 
   } catch (error) {
     core.setFailed(error.message);
