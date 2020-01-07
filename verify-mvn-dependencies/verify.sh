@@ -1,6 +1,4 @@
 #!/bin/bash
-set -e
-
 mvn -B dependency:tree | tee .dependency-tree
 
 DEPENNDENCIES="$(cat .dependency-tree | grep -e '|' -e +)"
