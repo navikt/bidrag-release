@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 mvn -B dependency:tree | tee .dependency-tree
 
 ARTIFACT=$(echo "$GITHUB_REPOSITORY" | sed 's/navikt\///')
