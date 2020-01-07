@@ -1,12 +1,8 @@
 #!/bin/bash
-set -e
-
 mvn -B dependency:tree | tee .dependency-tree
 
-ARTIFACT=$(echo "$GITHUB_REPOSITORY" | sed 's/navikt\///')
-DEPENDENCIES=$(cat .dependency-tree | grep "\[INFO]")
-REMOVED_ARTIFACT=$(echo "$DEPENDENCIES" | grep -v "$ARTIFACT")
-COUNT=$(echo "$REMOVED_ARTIFACT" | grep -c SNAPSHOT)
+DEPENDENCIES=$(cat .dependency-tree | grep "\[INFO]" | grep "\- ")
+COUNT=$(echo "$DEPENDENCIES" | grep -c SNAPSHOT)
 
 echo "Found $COUNT SNAPSHOT dependencies"
 
