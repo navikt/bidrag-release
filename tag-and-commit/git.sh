@@ -12,7 +12,7 @@ then
     TAG_CONTENT=$(cat $INPUT_TAG_FILE)
     echo "Tagging new version with: $TAG_CONTENT"
 
-    INPUT_MESSAGE=$(echo $INPUT_MESSAGE | sed "s/{}/$TAG_CONTENT/")
+    INPUT_MESSAGE=$(echo "$INPUT_MESSAGE" | sed "s/{}/$TAG_CONTENT/")
 
     git tag -a "$TAG_CONTENT" -m "$INPUT_MESSAGE"
     git push origin "$TAG_CONTENT"
