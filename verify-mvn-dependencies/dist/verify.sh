@@ -1,8 +1,9 @@
 #!/bin/bash
+set -e
 mvn -B dependency:tree | tee .dependency-tree
 
 DEPENDENCIES=$(cat .dependency-tree | grep "\[INFO]" | grep "\- ")
-COUNT=$(echo "$DEPENDENCIES" | grep -c SNAPSHOT)
+COUNT=$(echo "$DEPENDENCIES" | grep -c -q SNAPSHOT)
 
 echo "Found $COUNT SNAPSHOT dependencies"
 
