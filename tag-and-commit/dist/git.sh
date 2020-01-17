@@ -35,6 +35,8 @@ else
   echo "No file for automatic release is present, will not release"
 fi
 
+git status
+
 if ! git diff --quiet
 then
   echo "commiting changes with INPUT_COMMIT_MESSAGE: $INPUT_COMMIT_MESSAGE"
