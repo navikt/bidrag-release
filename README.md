@@ -6,7 +6,8 @@ Alt blir utført av bash-scripter slik at det enkelt kan testes på reell kodeba
 dette som form av tekst skrevet til enkle filer på filsystemet og dette angis som inputs til hver action (som blir oversatt til miljøvariabler i
 script)
 
-Utenom miljøvariabler for filnavn, så finnes også miljøvariabler for autentisering (når action trenger dette), eks: `GITHUB_TOKEN`.
+Utenom miljøvariabler for filnavn, så finnes også miljøvariabler for autentisering (når action trenger dette), eks: `GITHUB_TOKEN`, samt miljøvariabler
+for commit og tag meldinger i tag-and-commit action.
 
 Andre sider ved design av disse "actions", er at de er laget for å kjøre sammen. Dvs. at enkelte actions produserer filer som kan brukes av andre
 "actions". Det er blant annet en sterk knytning mellom `release-verify-auto-deploy` og `tag-and-commit`. Hvis auto-deploy ikke kan gjøres vil ikke
