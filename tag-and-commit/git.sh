@@ -25,6 +25,7 @@ then
 
     INPUT_TAG_MESSAGE=$(echo "$INPUT_TAG_MESSAGE" | sed "s/{}/$TAG_CONTENT/")
 
+    echo "tagging release with tag message: $INPUT_TAG_MESSAGE"
     git tag -a "$TAG_CONTENT" -m "$INPUT_TAG_MESSAGE"
     git push origin "$TAG_CONTENT"
   else
@@ -35,15 +36,16 @@ else
   echo "No file for automatic release is present, will not release"
 fi
 
-git status
+echo 'files staged for commit'
+git diff --name-only --cached
 
 if ! git diff --quiet
 then
-  echo "commiting changes with INPUT_COMMIT_MESSAGE: $INPUT_COMMIT_MESSAGE"
+  echo "commiting changes with commit message: $INPUT_COMMIT_MESSAGE"
 
   git add "$INPUT_PATTERN"
   git commit -m "$INPUT_COMMIT_MESSAGE"
   git push
 else
-  echo "No changes in the repository. Will not commit"
+  echo "No files staged for commit."
 fi
