@@ -7,7 +7,7 @@ git config --global user.name "$AUTHOR_NAME"
 
 if [ -z $INPUT_FILE_IS_RELEASE ]
 then
-  echo "No automatic release tagging will be done"
+  echo "No automatic release file is present. Tagging will not be done"
 elif [ -f $INPUT_FILE_IS_RELEASE ]
 then
   if [ -f $INPUT_TAG_FILE ]
