@@ -37,7 +37,6 @@ fi
 
 if ! git diff --quiet
 then
-  env
   echo "commiting changes with INPUT_COMMIT_MESSAGE: $INPUT_COMMIT_MESSAGE"
 
   git add "$INPUT_PATTERN"
