@@ -35,7 +35,8 @@ else
   echo "No file for automatic release is present, will not release"
 fi
 
-git status
+echo 'files staged for commit'
+git diff --name-only --cached
 
 if ! git diff --quiet
 then
@@ -45,5 +46,5 @@ then
   git commit -m "$INPUT_COMMIT_MESSAGE"
   git push
 else
-  echo "No changes in the repository. Will not commit"
+  echo "No files staged for commit."
 fi
