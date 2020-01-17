@@ -13,7 +13,7 @@ inputs:
     required: false
   tag_file:
     description: the name of the file containing the content of the tag which is used when releasing
-    required: true
+    required: false
     default: ".release-version"
   pattern:
     description: the pattern to use with git add
