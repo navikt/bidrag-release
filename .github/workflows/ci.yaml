@@ -44,8 +44,10 @@ jobs:
         with:
           artifact_folder: bidrag-actions/verify-mvn-dependencies
       - name: commit ncc build in bidrag-actions
-        uses: navikt/bidrag-actions/tag-and-commit@master
+        uses: navikt/bidrag-actions/tag-and-commit@verify-remove-js
         with:
+          author_email: ${{ github.head_commit.author.email }}
+          author_name: ${{ github.head_commit.author.name }}
           commit_message: "Fresh build of actions using npm and ncc"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
