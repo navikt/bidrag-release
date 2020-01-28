@@ -31,7 +31,7 @@ jobs:
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
           artifact_folder: bidrag-actions/release-verify-auto-deploy
-      - name: install git-tag-d-commit
+      - name: install git-tag-n-commit
         uses: navikt/bidrag-actions/build-node-artifact@master
         with:
           artifact_folder: bidrag-actions/git-tag-n-commit
