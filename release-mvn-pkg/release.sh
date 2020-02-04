@@ -1,9 +1,13 @@
 #!/bin/bash
 set -e
 
-echo === ls -la ===
-ls -la
-echo === end ===
+if [ ! -z "$INPUT_SRC_FOLDER" ]
+then
+  cd "$INPUT_SRC_FOLDER"
+fi
+
+echo "Working directory"
+pwd
 
 if [ ! -f .is-release-candidate ]
   then

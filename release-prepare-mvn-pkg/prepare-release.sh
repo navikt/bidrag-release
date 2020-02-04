@@ -1,6 +1,14 @@
 #!/bin/bash
 set -e
 
+if [ ! -z "$INPUT_SRC_FOLDER" ]
+then
+  cd "$INPUT_SRC_FOLDER"
+fi
+
+echo "Working directory"
+pwd
+
 # example, current version: 1.2.3-SNAPSHOT
 
 # - fetch 1.2.3 of 1.2.3-SNAPSHOT version tag in pom.xml
