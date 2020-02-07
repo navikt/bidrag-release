@@ -29,7 +29,7 @@ if [ ! -f "$INPUT_NEW_SNAPSHOT_VERSION_FILE" ]
 fi
 
 echo "Running release"
-mvn -B --settings maven-settings.xml deploy -DskipTests -Dmaven.wagon.http.pool=false
+mvn -B --settings maven-settings.xml deploy -e -DskipTests -Dmaven.wagon.http.pool=false
 
 NEW_SNAPSHOT_VERSION=$(cat $INPUT_NEW_SNAPSHOT_VERSION_FILE)
 
