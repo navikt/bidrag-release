@@ -24,6 +24,11 @@ pwd
 RELEASE_VERSION=$(cat pom.xml | grep version | grep SNAPSHOT | \
   sed 's/version//g' | sed 's/  //' | sed 's/-SNAPSHOT//' | sed 's;[</>];;g' | xargs)
 
+if [ -z "$RELEASE_VERSION" ]; then
+  >&2 echo "::error No snapshot version is found. Unable to determine release version"
+  exit 1;
+fi
+
 # - writes release version (1.2.3) to file for INPUT_RELEASE_VERSION_FILE_NAME
 echo "$RELEASE_VERSION" > "$INPUT_RELEASE_VERSION_FILE_NAME"
 
