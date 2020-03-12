@@ -3,7 +3,7 @@ set -e
 
 if [ ! -f "$INPUT_RELEASE_VERSION_FILE" ]
   then
-    >&2 echo "::error no $INPUT_RELEASE_VERSION_FILE found!"
+    >&2 echo ::error no $INPUT_RELEASE_VERSION_FILE found!
     exit 1;
 fi
 
