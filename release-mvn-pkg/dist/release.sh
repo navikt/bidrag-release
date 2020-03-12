@@ -13,7 +13,7 @@ if [ ! -f .is-release-candidate ]
   then
     if [ ! -f .is-not-release-candidate ]
       then
-        >&2 echo "::error No verification of artifact is eligable for deploy has been done, please use '/release-verify-auto-deploy'"
+        >&2 echo ::error No verification of artifact is eligable for deploy has been done, please use '/release-verify-auto-deploy'
         exit 1;
     fi
 
@@ -24,7 +24,7 @@ fi
 
 if [ ! -f "$INPUT_NEW_SNAPSHOT_VERSION_FILE" ]
   then
-    >&2 echo "::error $INPUT_NEW_SNAPSHOT_VERSION_FILE is not present"
+    >&2 echo ::error $INPUT_NEW_SNAPSHOT_VERSION_FILE is not present
     exit 1;
 fi
 

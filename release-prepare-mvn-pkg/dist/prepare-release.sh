@@ -25,7 +25,7 @@ RELEASE_VERSION=$(cat pom.xml | grep version | grep SNAPSHOT | \
   sed 's/version//g' | sed 's/  //' | sed 's/-SNAPSHOT//' | sed 's;[</>];;g' | xargs)
 
 if [ -z "$RELEASE_VERSION" ]; then
-  >&2 echo "::error No snapshot version is found. Unable to determine release version"
+  >&2 echo ::error No snapshot version is found. Unable to determine release version
   exit 1;
 fi
 
