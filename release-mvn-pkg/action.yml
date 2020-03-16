@@ -4,8 +4,8 @@ inputs:
   src_folder:
     description: the name of a source folder to run the commands form
     required: false
-  new_snapshot_version_file:
-    description: file containing the value of the new SNAPSHOT-version to use after release of current project object model (pom.xml for maven)
+  new_snapshot_version:
+    description: the value of the new SNAPSHOT-version to use after release of current project object model (pom.xml for maven)
     required: true
 runs:
   using: node12
