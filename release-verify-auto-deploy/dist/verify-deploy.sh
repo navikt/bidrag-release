@@ -11,7 +11,7 @@ set -e
 #
 ############################################
 
-RELEASE_TABLE=$(cat "$INPUT_CHANGELOG_FILE" | grep '|')            # the release table in the changelog file
+RELEASE_TABLE=$(grep '|' < "$INPUT_CHANGELOG_FILE")            # the release table in the changelog file
 COUNT="$(echo "$RELEASE_TABLE" | grep -c "$INPUT_RELEASE_VERSION" || true)" # count all mentions of 'RELEASE_VERSION' in the 'RELEASE_TABLE' from the changelog
 
 echo "echo Found $COUNT mentioning(s) of $INPUT_RELEASE_VERSION in $INPUT_CHANGELOG_FILE."
