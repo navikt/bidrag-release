@@ -7,7 +7,7 @@ set -e
 # 1) Går til angitt mappe (hvis angitt) for utføring av script
 # 2) Hvis det ikke er en "release candidate", så avsluttes scriptet uten feil
 # 3) Når det er en "release candidate", så kjøres mvn deploy uten testing
-# 4) Når det er en "release candidate", så oppdates "maven project object model" (pom.xml) med ny SNAPSHOT versjon
+# 4) Når det er en "release candidate", så oppdateres "maven project object model" (pom.xml) med ny SNAPSHOT versjon
 #
 ############################################
 
