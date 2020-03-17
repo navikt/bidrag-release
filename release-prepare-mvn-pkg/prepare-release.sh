@@ -19,7 +19,7 @@ echo "Working directory"
 pwd
 
 # example, reads current version: 1.2.3-SNAPSHOT from pom.xml
-SNAPSHOT_VERSION=$(cat pom.xml | grep version | grep SNAPSHOT)
+SNAPSHOT_VERSION=$(grep version pom.xml | grep SNAPSHOT)
 
 if [ -z "$SNAPSHOT_VERSION" ]; then
   >&2 echo ::error No snapshot version is found. Unable to determine release version
@@ -27,7 +27,7 @@ if [ -z "$SNAPSHOT_VERSION" ]; then
 fi
 
 # - fetch 1.2.3 of `    <version>1.2.3-SNAPSHOT</version>` version from pom.xml
-RELEASE_VERSION=$(echo "$SNAPSHOT_VERSION" | sed 's/version//g' | sed 's/  //' | sed 's/-SNAPSHOT//' | sed 's;[</>];;g' | xargs)
+RELEASE_VERSION=$(grep "$SNAPSHOT_VERSION" pom.xml | sed 's/version//g' | sed 's/  //' | sed 's/-SNAPSHOT//' | sed 's;[</>];;g' | xargs)
 
 if [ -z "$RELEASE_VERSION" ]; then
   >&2 echo ::error unable to find release version from version tag
@@ -38,7 +38,7 @@ fi
 mvn -B -e release:update-versions
 
 # writes new snapshot version (1.2.4-SNAPSHOT) to file INPUT_NEW_SNAPSHOT_VERSION_FILE_NAME
-NEW_SNAPSHOT_VERSION=$(cat pom.xml | grep version | grep SNAPSHOT |  sed 's/version//g' | sed 's/  //' | sed 's;[</>];;g')
+NEW_SNAPSHOT_VERSION=$(grep version pom.xml | grep SNAPSHOT |  sed 's/version//g' | sed 's/  //' | sed 's;[</>];;g')
 
 echo ::set-output name=release_version="$RELEASE_VERSION"
 echo ::set-output name=new_snapshot_version="$NEW_SNAPSHOT_VERSION"
