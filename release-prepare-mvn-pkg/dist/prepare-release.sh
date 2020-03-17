@@ -27,7 +27,7 @@ if [ -z "$SNAPSHOT_VERSION" ]; then
 fi
 
 # - fetch 1.2.3 of `    <version>1.2.3-SNAPSHOT</version>` version from pom.xml
-RELEASE_VERSION=$(grep "$SNAPSHOT_VERSION" pom.xml | sed 's/version//g' | sed 's/  //' | sed 's/-SNAPSHOT//' | sed 's;[</>];;g' | xargs)
+RELEASE_VERSION=$(echo "$SNAPSHOT_VERSION" | sed 's/version//g' | sed 's/  //' | sed 's/-SNAPSHOT//' | sed 's;[</>];;g' | xargs)
 
 if [ -z "$RELEASE_VERSION" ]; then
   >&2 echo ::error unable to find release version from version tag
