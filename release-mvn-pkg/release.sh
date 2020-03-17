@@ -1,6 +1,15 @@
 #!/bin/bash
 set -e
 
+############################################
+#
+# Følgende skjer i dette skriptet:
+# 1) Konfigurerer git, AUTHOR_EMAIL og AUTHOR_NAME blir satt av index.js (javascript delen av avtion)
+# 2) Hvis det er en "release"-kandidat, commit endringer i filsystemet og tag release
+#
+############################################
+
+
 if [ ! -z "$INPUT_SRC_FOLDER" ]
 then
   cd "$INPUT_SRC_FOLDER"
