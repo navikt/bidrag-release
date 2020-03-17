@@ -18,8 +18,8 @@ echo "echo Found $COUNT mentioning(s) of $INPUT_RELEASE_VERSION in $INPUT_CHANGE
 
 if [ "$COUNT" -eq 0 ]
   then
-    echo "::set-output name=is_release_candidate=false"
+    echo ::set-output name=is_release_candidate=false
     exit 0;
 fi
 
-echo "::set-output name=is_release_candidate=true"
+echo ::set-output name=is_release_candidate=true
