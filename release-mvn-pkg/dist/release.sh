@@ -4,8 +4,10 @@ set -e
 ############################################
 #
 # Følgende skjer i dette skriptet:
-# 1) Konfigurerer git, AUTHOR_EMAIL og AUTHOR_NAME blir satt av index.js (javascript delen av avtion)
-# 2) Hvis det er en "release"-kandidat, commit endringer i filsystemet og tag release
+# 1) Går til angitt mappe (hvis angitt) for utføring av script
+# 2) Hvis det ikke er en "release candidate", så avsluttes scriptet uten feil
+# 3) Når det er en "release candidate", så kjøres mvn deploy uten testing
+# 4) Når det er en "release candidate", så oppdates "maven project object model" (pom.xml) med ny SNAPSHOT versjon
 #
 ############################################
 
@@ -20,8 +22,7 @@ pwd
 
 if [ "$INPUT_IS_RELEASE_CANDIDATE" != "true" ]
 then
-  git reset --hard
-  echo "The artifact is not a release candidate, git reset --hard..."
+  echo "The artifact is not a release candidate..."
   exit 0;
 fi
 
