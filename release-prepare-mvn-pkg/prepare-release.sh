@@ -37,11 +37,8 @@ fi
 # updates to version 1.2.4-SNAPSHOT (using maven plugin to get the new version)
 mvn -B -e release:update-versions
 
-# writes new snapshot version (1.2.4-SNAPSHOT) to file INPUT_NEW_SNAPSHOT_VERSION_FILE_NAME
+# updates for output: new snapshot version (1.2.4-SNAPSHOT)
 NEW_SNAPSHOT_VERSION=$(grep version pom.xml | grep SNAPSHOT |  sed 's/version//g' | sed 's/  //' | sed 's;[</>];;g')
 
 echo ::set-output name=release_version="$RELEASE_VERSION"
 echo ::set-output name=new_snapshot_version="$NEW_SNAPSHOT_VERSION"
-
-# Prepares the maven artifact with the release version
-mvn -B -e versions:set -DnewVersion="$RELEASE_VERSION"

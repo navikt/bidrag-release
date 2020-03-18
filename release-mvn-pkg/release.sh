@@ -11,7 +11,6 @@ set -e
 #
 ############################################
 
-
 if [ ! -z "$INPUT_SRC_FOLDER" ]
 then
   cd "$INPUT_SRC_FOLDER"
@@ -25,6 +24,9 @@ then
   echo "The artifact is not a release candidate..."
   exit 0;
 fi
+
+# Prepares the maven artifact with the release version
+mvn -B -e versions:set -DnewVersion="$INPUT_RELEASE_VERSION"
 
 echo "Running release"
 mvn -B --settings maven-settings.xml deploy -e -DskipTests -Dmaven.wagon.http.pool=false
