@@ -3,11 +3,13 @@ const exec = require("@actions/exec");
 
 async function run() {
   try {
-
-    core.debug(`filepath: ${__dirname}`);
+    const newSnapshotVersion = core.getInput('new_snapshot_version');
+    const releaseVersion = core.getInput('release_version');
 
     // Execute verify-deploy bash script
-    await exec.exec(`${__dirname}/verify-deploy.sh`);
+    await exec.exec(
+        `bash ${__dirname}/verify-deploy.sh ${newSnapshotVersion} ${releaseVersion}`
+    );
 
   } catch
       (error) {
