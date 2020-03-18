@@ -935,7 +935,7 @@ const exec = __webpack_require__(920);
 
 async function run() {
   try {
-    const newSnapshotVersion = core.getInput('new_snapshot_version');
+    const newSnapshotVersion = core.getInput('changelog_file');
     const releaseVersion = core.getInput('release_version');
 
     // Execute verify-deploy bash script
