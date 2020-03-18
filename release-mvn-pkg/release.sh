@@ -6,8 +6,9 @@ set -e
 # Følgende skjer i dette skriptet:
 # 1) Går til angitt mappe (hvis angitt) for utføring av script
 # 2) Hvis det ikke er en "release candidate", så avsluttes scriptet uten feil
-# 3) Når det er en "release candidate", så kjøres mvn deploy uten testing
-# 4) Når det er en "release candidate", så oppdateres "maven project object model" (pom.xml) med ny SNAPSHOT versjon
+# 3) Når det er en "release candidate", så oppdateres "maven project object model" (pom.xml) med release versjonj
+# 4) Når det er en "release candidate", så kjøres mvn deploy uten testing
+# 5) Når det er en "release candidate", så oppdateres "maven project object model" (pom.xml) med ny SNAPSHOT versjon
 #
 ############################################
 
@@ -26,6 +27,7 @@ then
 fi
 
 # Prepares the maven artifact with the release version
+echo "Setting release version: $INPUT_RELEASE_VERSION"
 mvn -B -e versions:set -DnewVersion="$INPUT_RELEASE_VERSION"
 
 echo "Running release"
