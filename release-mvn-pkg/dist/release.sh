@@ -12,6 +12,10 @@ set -e
 #
 ############################################
 
+INPUT_IS_RELEASE_CANDIDATE="$1"
+INPUT_NEW_SNAPSHOT_VERSION="$2"
+INPUT_RELEASE_VERSION="$3"
+
 if [ ! -z "$INPUT_SRC_FOLDER" ]
 then
   cd "$INPUT_SRC_FOLDER"
