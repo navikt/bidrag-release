@@ -4,7 +4,7 @@ set -e
 ############################################
 #
 # Følgende skjer i dette skriptet:
-# 1) Henter gjeldene snapshot versjon for å finne release versjon som også skrives til fil
+# 1) Henter gjeldene snapshot versjon fra pom.xml for å finne release versjon
 # 2) Bruker maven til å finne ny snapshot versjon som skrives til fil
 # 3) Bruker maven til å oppdatere pom med release versjon som er funnet
 #
@@ -18,29 +18,27 @@ fi
 echo "Working directory"
 pwd
 
-# example, current version: 1.2.3-SNAPSHOT
+# example, reads current version: 1.2.3-SNAPSHOT from pom.xml
+SNAPSHOT_VERSION=$(grep version pom.xml | grep SNAPSHOT)
 
-# - fetch 1.2.3 of 1.2.3-SNAPSHOT version tag in pom.xml
-RELEASE_VERSION=$(cat pom.xml | grep version | grep SNAPSHOT | \
-  sed 's/version//g' | sed 's/  //' | sed 's/-SNAPSHOT//' | sed 's;[</>];;g' | xargs)
-
-if [ -z "$RELEASE_VERSION" ]; then
+if [ -z "$SNAPSHOT_VERSION" ]; then
   >&2 echo ::error No snapshot version is found. Unable to determine release version
   exit 1;
 fi
 
-# - writes release version (1.2.3) to file for INPUT_RELEASE_VERSION_FILE_NAME
-echo "$RELEASE_VERSION" > "$INPUT_RELEASE_VERSION_FILE_NAME"
+# - fetch 1.2.3 of `  <version>1.2.3-SNAPSHOT</version>` version from pom.xml
+RELEASE_VERSION=$(echo "$SNAPSHOT_VERSION" | sed 's/version//g' | sed 's/  //' | sed 's/-SNAPSHOT//' | sed 's;[</>];;g' | xargs)
 
-# updates to version 1.2.4-SNAPSHOT
+if [ -z "$RELEASE_VERSION" ]; then
+  >&2 echo ::error unable to find release version from version tag
+  exit 1;
+fi
+
+# updates to version 1.2.4-SNAPSHOT (using maven plugin to get the new version)
 mvn -B -e release:update-versions
 
-# writes new snapshot version (1.2.4-SNAPSHOT) to file INPUT_NEW_SNAPSHOT_VERSION_FILE_NAME
-cat pom.xml | grep version | grep SNAPSHOT | \
-  sed 's/version//g' | sed 's/  //' | sed 's;[</>];;g' > "$INPUT_NEW_SNAPSHOT_VERSION_FILE_NAME"
+# updates for output: new snapshot version (1.2.4-SNAPSHOT)
+NEW_SNAPSHOT_VERSION=$(grep version pom.xml | grep SNAPSHOT |  sed 's/version//g' | sed 's/  //' | sed 's;[</>];;g')
 
-echo "Setting release version        : $RELEASE_VERSION"
-echo "Preserving new snapshot version: $(cat "$INPUT_NEW_SNAPSHOT_VERSION_FILE_NAME")"
-
-# Update to new release version with commit hash
-mvn -B -e versions:set -DnewVersion="$RELEASE_VERSION"
+echo ::set-output name=release_version::"$RELEASE_VERSION"
+echo ::set-output name=new_snapshot_version::"$NEW_SNAPSHOT_VERSION"

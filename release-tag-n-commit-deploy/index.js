@@ -6,8 +6,12 @@ async function run() {
 
     setAuthorInformation();
 
-    // Execute tag bash script
-    await exec.exec(`${__dirname}/git.sh`);
+    const isReleaseCandidate = core.getInput('is_release_candidate');
+    const releaseVersion = core.getInput('release_version');
+
+    await exec.exec(
+        `bash ${__dirname}/git.sh ${isReleaseCandidate} ${releaseVersion}`
+    );
 
   } catch (error) {
     core.setFailed(error.message);
@@ -30,7 +34,9 @@ function setAuthorInformation() {
     process.env.AUTHOR_EMAIL = 'navikt.bidrag-actions.git-tag-n-commit@github.com';
   }
 
-  core.info(`Using '${process.env.AUTHOR_NAME} <${process.env.AUTHOR_EMAIL}>' as author.`);
+  core.info(
+      `Using '${process.env.AUTHOR_NAME} <${process.env.AUTHOR_EMAIL}>' as author.`
+  );
 }
 
 // noinspection JSIgnoredPromiseFromCall

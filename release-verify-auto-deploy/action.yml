@@ -5,10 +5,12 @@ inputs:
     description: the file containing the changelog for this release
     required: true
     default: README.md
-  release_version_file:
-    description: the file containing this release version
+  release_version:
+    description: the release version
     required: true
-    default: .release-version
+outputs:
+  is_release_candidate:
+    description: true/false determining if this maven package can be deployed given release and changelog
 runs:
   using: node12
   main: dist/index.js

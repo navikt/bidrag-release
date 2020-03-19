@@ -935,11 +935,13 @@ const exec = __webpack_require__(920);
 
 async function run() {
   try {
-
-    core.debug(`filepath: ${__dirname}`);
+    const changelogFile = core.getInput('changelog_file');
+    const releaseVersion = core.getInput('release_version');
 
     // Execute verify-deploy bash script
-    await exec.exec(__webpack_require__.ab + "verify-deploy.sh");
+    await exec.exec(
+        `bash ${__dirname}/verify-deploy.sh ${changelogFile} ${releaseVersion}`
+    );
 
   } catch
       (error) {
