@@ -26,7 +26,7 @@ if [ -z "$SNAPSHOT_VERSION" ]; then
   exit 1;
 fi
 
-# - fetch 1.2.3 of `    <version>1.2.3-SNAPSHOT</version>` version from pom.xml
+# - fetch 1.2.3 of `  <version>1.2.3-SNAPSHOT</version>` version from pom.xml
 RELEASE_VERSION=$(echo "$SNAPSHOT_VERSION" | sed 's/version//g' | sed 's/  //' | sed 's/-SNAPSHOT//' | sed 's;[</>];;g' | xargs)
 
 if [ -z "$RELEASE_VERSION" ]; then
@@ -40,5 +40,5 @@ mvn -B -e release:update-versions
 # updates for output: new snapshot version (1.2.4-SNAPSHOT)
 NEW_SNAPSHOT_VERSION=$(grep version pom.xml | grep SNAPSHOT |  sed 's/version//g' | sed 's/  //' | sed 's;[</>];;g')
 
-echo ::set-output name=release_version="$RELEASE_VERSION"
-echo ::set-output name=new_snapshot_version="$NEW_SNAPSHOT_VERSION"
+echo ::set-output name=release_version::"$RELEASE_VERSION"
+echo ::set-output name=new_snapshot_version::"$NEW_SNAPSHOT_VERSION"
