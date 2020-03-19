@@ -11,6 +11,9 @@ set -e
 #
 ############################################
 
+INPUT_IS_RELEASE_CANDIDATE=$1
+INPUT_RELEASE_VERSION=$3
+
 if [ "$INPUT_IS_RELEASE_CANDIDATE" = "true" ]
 then
   git remote set-url origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
