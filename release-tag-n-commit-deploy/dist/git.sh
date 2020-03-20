@@ -11,6 +11,9 @@ set -e
 #
 ############################################
 
+INPUT_IS_RELEASE_CANDIDATE=$1
+INPUT_RELEASE_VERSION=$2
+
 if [ "$INPUT_IS_RELEASE_CANDIDATE" = "true" ]
 then
   git remote set-url origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
@@ -19,7 +22,7 @@ then
 
   echo "Tagging new version with: $INPUT_RELEASE_VERSION"
 
-  if [ -z $INPUT_TAG_MESSAGE ]
+  if [ -z "$INPUT_TAG_MESSAGE" ]
   then
     >&2 echo ::error No message supplied for the tag!
     exit 1;
