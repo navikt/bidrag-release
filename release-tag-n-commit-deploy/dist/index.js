@@ -323,9 +323,12 @@ async function run() {
 
     const isReleaseCandidate = core.getInput('is_release_candidate');
     const releaseVersion = core.getInput('release_version');
+    const commitMessage = core.getInput('commit_message');
+    const tagMessage = core.getInput('tag_message');
+    const pattern = core.getInput('pattern');
 
     await exec.exec(
-        `bash ${__dirname}/git.sh ${isReleaseCandidate} ${releaseVersion}`
+        `bash ${__dirname}/release-tag-n-commit.sh ${isReleaseCandidate} ${releaseVersion} ${commitMessage} ${tagMessage} ${pattern}`
     );
 
   } catch (error) {
@@ -337,7 +340,7 @@ function setAuthorInformation() {
   const eventPath = process.env.GITHUB_EVENT_PATH;
 
   if (eventPath) {
-    const { author } = require(eventPath).head_commit;
+    const {author} = require(eventPath).head_commit;
 
     process.env.AUTHOR_NAME = author.name;
     process.env.AUTHOR_EMAIL = author.email;
