@@ -8,9 +8,10 @@ async function run() {
 
     const isReleaseCandidate = core.getInput('is_release_candidate');
     const releaseVersion = core.getInput('release_version');
+    const commitMessage = core.getInput("commit_message");
 
     await exec.exec(
-        `bash ${__dirname}/git.sh ${isReleaseCandidate} ${releaseVersion}`
+        `bash ${__dirname}/release-tag-n-commit.sh ${isReleaseCandidate} ${releaseVersion} ${commitMessage}`
     );
 
   } catch (error) {
