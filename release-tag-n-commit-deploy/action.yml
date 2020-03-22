@@ -9,11 +9,13 @@ inputs:
     required: true
   tag_message:
     description: the tag message for this release.
-    required: false
+    required: true
+  tag:
+    description: the tag to use with git tag
+    required: true
   pattern:
     description: the pattern to use with git add
-    required: false
-    default: "."
+    required: true
 runs:
   using: node12
   main: dist/index.js
