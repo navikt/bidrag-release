@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -x
 
 ############################################
 #
@@ -14,6 +14,8 @@ set -e
 INPUT_IS_RELEASE_CANDIDATE=$1
 INPUT_RELEASE_VERSION=$2
 INPUT_COMMIT_MESSAGE=$3
+INPUT_TAG_MESSAGE=$4
+INPUT_PATTERN=$5
 
 if [ "$INPUT_IS_RELEASE_CANDIDATE" = "true" ]
 then
@@ -22,23 +24,16 @@ then
   git config --global user.name "$AUTHOR_NAME"
 
   echo "Tagging new version with: $INPUT_RELEASE_VERSION"
-
-  if [ -z "$INPUT_TAG_MESSAGE" ]
-  then
-    >&2 echo ::error No message supplied for the tag!
-    exit 1;
-  fi
-
   echo "Commiting changes with commit message: $INPUT_COMMIT_MESSAGE"
 
   git add "$INPUT_PATTERN"
   git commit -m "$INPUT_COMMIT_MESSAGE"
-  git diff status
+  git status
   git push
 
   echo "Tagging release with tag message: $INPUT_TAG_MESSAGE"
-  git tag -a "$TAG_CONTENT" -m "$INPUT_TAG_MESSAGE"
-  git push origin "$TAG_CONTENT"
+  git tag -a "$INPUT_RELEASE_VERSION" -m "$INPUT_TAG_MESSAGE"
+  git push origin "$INPUT_TAG_MESSAGE"
 else
     echo "Not a release candidate, nothing will be committed or tagged..."
 fi
