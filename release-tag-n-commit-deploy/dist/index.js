@@ -327,6 +327,9 @@ async function run() {
     const isReleaseCandidate = core.getInput('is_release_candidate');
     const tag = core.getInput('tag');
 
+    core.info('is_release_candidate: ' + isReleaseCandidate);
+    core.info('is_release_candidate: ${isReleaseCandidate}');
+
     await exec.exec(
         `bash ${__dirname}/release-tag-n-commit.sh "${commitMessage}" "${tagMessage}" ${pattern} ${isReleaseCandidate} ${tag}`
     );
