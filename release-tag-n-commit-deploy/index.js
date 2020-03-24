@@ -6,14 +6,14 @@ async function run() {
 
     setAuthorInformation();
 
-    const isReleaseCandidate = core.getInput('is_release_candidate');
-    const releaseVersion = core.getInput('release_version');
     const commitMessage = core.getInput('commit_message');
     const tagMessage = core.getInput('tag_message');
     const pattern = core.getInput('pattern');
+    const isReleaseCandidate = core.getInput('is_release_candidate');
+    const tag = core.getInput('tag');
 
     await exec.exec(
-        `bash ${__dirname}/release-tag-n-commit.sh ${isReleaseCandidate} ${releaseVersion} "${commitMessage}" "${tagMessage}" ${pattern}`
+        `bash ${__dirname}/release-tag-n-commit.sh "${commitMessage}" "${tagMessage}" ${pattern} ${isReleaseCandidate} ${tag}`
     );
 
   } catch (error) {
