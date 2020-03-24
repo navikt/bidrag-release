@@ -33,7 +33,7 @@ then
 
   echo "Tagging release with tag message: $INPUT_TAG_MESSAGE"
   git tag -a "$INPUT_RELEASE_VERSION" -m "$INPUT_TAG_MESSAGE"
-  git push origin "$INPUT_TAG_MESSAGE"
+  git push origin "$INPUT_RELEASE_VERSION"
 else
     echo "Not a release candidate, nothing will be committed or tagged..."
 fi
