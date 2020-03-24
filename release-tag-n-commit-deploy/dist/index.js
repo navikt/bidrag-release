@@ -328,7 +328,7 @@ async function run() {
     const pattern = core.getInput('pattern');
 
     await exec.exec(
-        `bash ${__dirname}/release-tag-n-commit.sh ${isReleaseCandidate} ${releaseVersion} ${commitMessage} ${tagMessage} ${pattern}`
+        `bash ${__dirname}/release-tag-n-commit.sh ${isReleaseCandidate} ${releaseVersion} "${commitMessage}" "${tagMessage}" ${pattern}`
     );
 
   } catch (error) {
