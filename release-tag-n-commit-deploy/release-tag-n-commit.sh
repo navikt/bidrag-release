@@ -33,7 +33,7 @@ then
 
   git add "$INPUT_PATTERN"
   git commit -m "$INPUT_COMMIT_MESSAGE"
-  git status
+  git status | grep -v "Your branch is" | grep -v "Changes not staged" | grep -v "(use \"git"
   git push
 else
     echo "Not a release candidate, nothing will be committed or tagged..."
