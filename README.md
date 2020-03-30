@@ -16,11 +16,11 @@ Andre sider ved design av disse "actions", er at de er laget for å kjøre samme
 
 Noen av "actions" har sterke koblinger i form av at de produserer outputs som påvirker hvordan andre actions oppfører seg.
 
-produserer output             | output                 | actions som bruker output
-------------------------------|------------------------|--------------------------
-`release-prepare-mvn-pkg`     | `release_version`      | `release-mvn-pkg`, `release-verify-auto-deploy`, `release-git-tag-n-commit-deploy`
-`release-prepare-mvn-pkg`     | `new_snapshot_version` | `release-mvn-pkg`, `release-verify-auto-deploy` 
-`release-verify-auto-deployg` | `is_release_candidate` | `release-mvn-pkg`, `release-git-tag-n-commit-deploy`
+produserer output     | output                 | actions som bruker output
+----------------------|------------------------|--------------------------
+`prepare-mvn-pkg`     | `release_version`      | `mvn-github-pkg`, `verify-auto-release`, `tag-n-commit-release`
+`prepare-mvn-pkg`     | `new_snapshot_version` | `mvn-pkg`, `verify-auto-release
+`verify-auto-deployg` | `is_release_candidate` | `mvn-pkg`, `git-tag-n-commit-release`
 
 Det er lagt inn en workflow for å bygge alle actions med npm og ncc. Derfor er det bare filene `/<action>/index.js` og `/<action>/<bash>.sh` som skal
 endres når man skal forandre logikk i "action".
