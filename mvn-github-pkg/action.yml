@@ -13,6 +13,10 @@ inputs:
   release_version:
     description: the release version of the maven artifact
     required: true
+  is_commit_tag:
+    description: true/false determining if the tag should be committed as a version in the projects object model (pom) before tagging
+    required: false
+    default: "false"
 runs:
   using: node12
   main: dist/index.js

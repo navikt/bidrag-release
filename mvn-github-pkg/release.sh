@@ -8,13 +8,14 @@ set -e
 # 2) Hvis det ikke er en "release candidate", så avsluttes scriptet uten feil
 # 3) Når det er en "release candidate", så oppdateres "maven project object model" (pom.xml) med release versjonj
 # 4) Når det er en "release candidate", så kjøres mvn deploy uten testing
-# 5) Når det er en "release candidate", så oppdateres "maven project object model" (pom.xml) med ny SNAPSHOT versjon
+# 5) Når det er en "release candidate" og tag ikke skal committes, så oppdateres "maven project object model" (pom.xml) med ny SNAPSHOT versjon
 #
 ############################################
 
 INPUT_IS_RELEASE_CANDIDATE="$1"
 INPUT_NEW_SNAPSHOT_VERSION="$2"
 INPUT_RELEASE_VERSION="$3"
+INPUT_IS_COMMIT_TAG="$4"
 
 if [ ! -z "$INPUT_SRC_FOLDER" ]
 then
@@ -37,6 +38,9 @@ mvn -B -e versions:set -DnewVersion="$INPUT_RELEASE_VERSION"
 echo "Running release"
 mvn -B --settings maven-settings.xml deploy -e -DskipTests -Dmaven.wagon.http.pool=false
 
-# Update to new SNAPSHOT version
-echo "Setting SNAPSHOT version: $INPUT_NEW_SNAPSHOT_VERSION"
-mvn -B versions:set -DnewVersion="$INPUT_NEW_SNAPSHOT_VERSION"
+# Update to new SNAPSHOT version when tag should NOT be committed in the pom.xml
+if [ "$INPUT_IS_COMMIT_TAG" = "false" ]
+then
+  echo "Setting SNAPSHOT version: $INPUT_NEW_SNAPSHOT_VERSION"
+  mvn -B versions:set -DnewVersion="$INPUT_NEW_SNAPSHOT_VERSION"
+fi
