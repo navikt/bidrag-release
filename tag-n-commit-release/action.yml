@@ -16,10 +16,9 @@ inputs:
   pattern:
     description: the pattern to use with git add
     required: true
-  is_commit_tag:
-    description: true/false determining if the tag should be committed as a version in the projects object model (pom) before tagging
+  new_snapshot_version:
+    description: the value of the new SNAPSHOT-version to use after release of current project object model (pom.xml for maven), if given the tagged version vil be committed first
     required: false
-    default: "false"
 runs:
   using: node12
   main: dist/index.js
