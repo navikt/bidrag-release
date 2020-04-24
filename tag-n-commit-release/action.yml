@@ -16,6 +16,10 @@ inputs:
   pattern:
     description: the pattern to use with git add
     required: true
+  is_commit_tag:
+    description: true/false determining if the tag should be committed as a version in the projects object model (pom) before tagging
+    required: false
+    default: "false"
 runs:
   using: node12
   main: dist/index.js

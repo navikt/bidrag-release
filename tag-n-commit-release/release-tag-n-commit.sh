@@ -16,12 +16,21 @@ INPUT_TAG_MESSAGE=$2
 INPUT_PATTERN=$3
 INPUT_IS_RELEASE_CANDIDATE=$4
 INPUT_RELEASE_VERSION=$5
+INPUT_IS_COMMIT_TAG=$6
 
 if [ "$INPUT_IS_RELEASE_CANDIDATE" = "true" ]
 then
   git remote set-url origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
   git config --global user.email "$AUTHOR_EMAIL"
   git config --global user.name "$AUTHOR_NAME"
+
+  if [ "$INPUT_IS_COMMIT_TAG" = "true" ]
+  then
+    echo "Commiting released version ($INPUT_RELEASE_VERSION) in pom.xml"
+    git add pom.xml
+    git commit -m "Committing released version ($INPUT_RELEASE_VERSION) in pom.xml"
+    git push
+  fi
 
   echo "Tagging new version with: $INPUT_RELEASE_VERSION"
   echo "Tagging release with tag message: $INPUT_TAG_MESSAGE"

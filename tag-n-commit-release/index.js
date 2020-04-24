@@ -11,9 +11,10 @@ async function run() {
     const pattern = core.getInput('pattern');
     const isReleaseCandidate = core.getInput('is_release_candidate');
     const tag = core.getInput('tag');
+    const isCommitTag = core.getInput('is_commit_tag');
 
     await exec.exec(
-        `bash ${__dirname}/release-tag-n-commit.sh "${commitMessage}" "${tagMessage}" ${pattern} ${isReleaseCandidate} ${tag}`
+        `bash ${__dirname}/../release-tag-n-commit.sh "${commitMessage}" "${tagMessage}" "${pattern}" "${isReleaseCandidate}" "${tag}" "${isCommitTag}"`
     );
 
   } catch (error) {
