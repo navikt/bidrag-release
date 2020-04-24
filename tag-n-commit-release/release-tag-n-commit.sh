@@ -1,13 +1,14 @@
 #!/bin/bash
-set -e
+set -x
 
 ############################################
 #
 # Følgende skjer i dette skriptet:
 # 1)  Hvis det er en "release"-kandidat
 # 1a) Konfigurerer git, AUTHOR_EMAIL og AUTHOR_NAME blir satt av index.js (javascript delen av avtion)
-# 1b) commit endringer i INPUT_COMMIT_PATTERN
-# 1c) tag release med INPUT_TAG_MESSAGE
+# 1b) commit pom.xml med release versjon
+# 1c) commit endringer i INPUT_COMMIT_PATTERN
+# 1d) tag release med INPUT_TAG_MESSAGE
 #
 ############################################
 
@@ -30,6 +31,7 @@ then
     git add pom.xml
     git commit -m "Committing released version ($INPUT_RELEASE_VERSION) in pom.xml"
     git push
+    git pull
   fi
 
   echo "Tagging new version with: $INPUT_RELEASE_VERSION"
