@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+set -e
 
 ############################################
 #
@@ -31,7 +31,9 @@ then
     git add pom.xml
     git commit -m "Committing released version ($INPUT_RELEASE_VERSION) in pom.xml"
     git push
-    git pull
+
+    echo "Setting SNAPSHOT version: $INPUT_NEW_SNAPSHOT_VERSION"
+    mvn -B versions:set -DnewVersion="$INPUT_NEW_SNAPSHOT_VERSION"
   fi
 
   echo "Tagging new version with: $INPUT_RELEASE_VERSION"
