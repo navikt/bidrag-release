@@ -1,4 +1,4 @@
-# bidrag-actions/release-mvn-pkg
+# bidrag-release/mvn-github-pkg
 
 En github action som vil legge en ny maven artefakt i github packages for navikt.
 

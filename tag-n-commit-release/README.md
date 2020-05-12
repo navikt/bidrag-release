@@ -1,4 +1,4 @@
-# bidrag-actions/tag-and-commit-mvn-deploy
+# bidrag-release/tag-and-commit-release
 
 This action is strongly coupled with `release-prepare-mvn-pkg` and `release-verify-auto-deploy` and
 will create a tag, commit changed repository files, and push this to origin (when `is_release_candidate`)

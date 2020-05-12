@@ -18,12 +18,20 @@ INPUT_PATTERN=$3
 INPUT_IS_RELEASE_CANDIDATE=$4
 INPUT_RELEASE_VERSION=$5
 INPUT_NEW_SNAPSHOT_VERSION=$6
+INPUT_MAVEN_IMAGE=$7
 
 if [ "$INPUT_IS_RELEASE_CANDIDATE" = "true" ]
 then
   git remote set-url origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
   git config --global user.email "$AUTHOR_EMAIL"
   git config --global user.name "$AUTHOR_NAME"
+
+  if [ -z "$INPUT_MAVEN_IMAGE" ]
+  then
+    MVN_CMD=mvn
+  else
+    MVN_CMD="docker run -it --rm -v $PWD:/usr/src/mymaven -v ~/.m2:/root/.m2 -w /usr/src/mymaven $INPUT_MAVEN_IMAGE mvn"
+  fi
 
   if [ ! -z "$INPUT_NEW_SNAPSHOT_VERSION" ]
   then
@@ -33,7 +41,7 @@ then
     git push
 
     echo "Setting SNAPSHOT version: $INPUT_NEW_SNAPSHOT_VERSION"
-    mvn -B versions:set -DnewVersion="$INPUT_NEW_SNAPSHOT_VERSION"
+    "$MVN_CMD" -B versions:set -DnewVersion="$INPUT_NEW_SNAPSHOT_VERSION"
   fi
 
   echo "Tagging new version with: $INPUT_RELEASE_VERSION"
