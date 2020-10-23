@@ -29,6 +29,7 @@ endres når man skal forandre logikk i "action".
 
 Versjon | Endringstype | Beskrivelse
 --------|--------------|------------
+v3.1.0  | Endring      | `tag-n-commit`: will tag and commit by default if no argument is given 
 v3.0.2  | Endring      | versjonsavhengigheter
 v3.0.1  | Endring      | `tag-n-commit`: will commit tag and set next SNAPSHOT version when `new_snapshot_version` is provided
 v3.0.1  | Endring      | `mvn-githu-pkg`: will not set next SNAPSHOT version if `ìs_commit_tag`

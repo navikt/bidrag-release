@@ -4,6 +4,7 @@ inputs:
   is_release_candidate:
     description: true/false determining if this is a release candidate (new deploy) or not
     required: true
+    default: true
   commit_message:
     description: the commit message for any changes made by former actions
     required: true
