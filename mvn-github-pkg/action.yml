@@ -7,6 +7,7 @@ inputs:
   is_release_candidate:
     description: true/false determining if this is a release candidate (new deploy) or not
     required: true
+    default: 'true'
   new_snapshot_version:
     description: the value of the new SNAPSHOT-version to use after release of current project object model (pom.xml for maven)
     required: true
