@@ -5,7 +5,7 @@ set -e
 #
 # Følgende skjer i dette skriptet:
 # 1) Henter gjeldene snapshot versjon fra pom.xml for å finne release versjon
-# 2) Bruker maven til å finne ny snapshot versjon som skrives til fil
+# 2) Bruker maven til å finne ny snapshot versjon som skal gies som output fra action
 # 3) Bruker maven til å oppdatere pom med release versjon som er funnet
 #
 ############################################
