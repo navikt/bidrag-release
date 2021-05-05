@@ -29,6 +29,7 @@ endres når man skal forandre logikk i "action".
 
 Versjon | Endringstype | Beskrivelse
 --------|--------------|------------
+v3.1.2  | Endring      | actions/core er nå 1.2.7 for alle actions 
 v3.1.1  | Endring      | `mvn-github-pkg`: will deploy maven package as default if used 
 v3.1.0  | Endring      | `tag-n-commit`: will tag and commit by default if no argument is given 
 v3.0.2  | Endring      | versjonsavhengigheter
