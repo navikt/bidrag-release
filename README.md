@@ -27,19 +27,21 @@ endres når man skal forandre logikk i "action".
 
 ### Changelog
 
-Versjon | Endringstype | Beskrivelse
---------|--------------|------------
-v3.1.2  | Endring      | actions/core er nå 1.2.7 for alle actions 
-v3.1.1  | Endring      | `mvn-github-pkg`: will deploy maven package as default if used 
-v3.1.0  | Endring      | `tag-n-commit`: will tag and commit by default if no argument is given 
-v3.0.2  | Endring      | versjonsavhengigheter
-v3.0.1  | Endring      | `tag-n-commit`: will commit tag and set next SNAPSHOT version when `new_snapshot_version` is provided
-v3.0.1  | Endring      | `mvn-githu-pkg`: will not set next SNAPSHOT version if `ìs_commit_tag`
-v3.0.0  | nytt repo    | trukket ut kode til nytt repo og endret navn på action mapper
-v2.0.3  | Endret       | `release-verify-auto-deploy`: git status message is filtered with focus on new, modified, or deleted files
-v2.0.2	| Endret       | `release-tag-n-commit-deploy`: internal refac (fix)
-v2.0.1  | Endret       | logging and use of git
-v2      | Endret       | actions generate and use outputs as inputs
-v1      | Endret       | `release-mvn-package`: ommit " when doing logging with the echo command 
-v1      | Endret       | `release-prepare-mvn-package`: ommit " when doing logging with the echo command 
-v1      | Endret       | `release-verify-auto-deploy`: ommit " when doing logging with the echo command 
+Versjon   | Endringstype | Beskrivelse
+----------|--------------|------------
+v3.1.5    | Endring      | upgrade @actions/core from 1.5.0 to 1.6.0
+v3.1.3..4 | Endring      | snyk fixes
+v3.1.2.   | Endring      | actions/core er nå 1.2.7 for alle actions 
+v3.1.1    | Endring      | `mvn-github-pkg`: will deploy maven package as default if used 
+v3.1.0    | Endring      | `tag-n-commit`: will tag and commit by default if no argument is given 
+v3.0.2    | Endring      | versjonsavhengigheter
+v3.0.1    | Endring      | `tag-n-commit`: will commit tag and set next SNAPSHOT version when `new_snapshot_version` is provided
+v3.0.1    | Endring      | `mvn-githu-pkg`: will not set next SNAPSHOT version if `ìs_commit_tag`
+v3.0.0    | nytt repo    | trukket ut kode til nytt repo og endret navn på action mapper
+v2.0.3    | Endret       | `release-verify-auto-deploy`: git status message is filtered with focus on new, modified, or deleted files
+v2.0.2    | Endret       | `release-tag-n-commit-deploy`: internal refac (fix)
+v2.0.1    | Endret       | logging and use of git
+v2.       | Endret       | actions generate and use outputs as inputs
+v1        | Endret       | `release-mvn-package`: ommit " when doing logging with the echo command 
+v1        | Endret       | `release-prepare-mvn-package`: ommit " when doing logging with the echo command 
+v1.       | Endret       | `release-verify-auto-deploy`: ommit " when doing logging with the echo command 
